@@ -24,14 +24,14 @@
             background-color: white;
             color:#24a3b5;
         }
-        #img{
-            width:70px;
-            height:30px;
-            vertical-align: middle;
+        img{
+            width:60%;
+            height:35%;
+            margin: auto;
         }
+
         #containData{
-            width:90%;
-            margin:auto;
+            width:80%; 
             padding:2%;
             margin-top:2%;
             display:grid;
@@ -40,7 +40,7 @@
         #containData > div{
             background-color: white;
             margin-bottom: 30px;
-          padding: 30px;
+          padding: 20px;
         }
         #containData > div:hover{
             border: 2px solid #24A3B5;
@@ -52,6 +52,14 @@
             background-color: white;
             color:#24a3b5;
         }
+        #containData{
+           width: 80%;
+       }
+       #heading > img{
+            width:70px;
+            height:30px;
+            vertical-align: middle;
+       }
        
     </style>
 </head>
@@ -65,7 +73,10 @@
         <div onclick="homepage()" id="home">HOME & KITCHEN</div>
     </div>
     </div>
-    <div id="containData"></div>    
+    <div id="datafilters">
+        <div id="filters"></div>
+        <div id="containData"></div> 
+    </div>
 </body>
 </html>
 <script>
@@ -147,7 +158,6 @@ discount:"30",
 rating:"4.0",
 img:"https://cdn.shopclues.com/images1/thumbnails/101924/280/1/147322523-101924415-1563454231.jpg"},]; // put all men data here
  // Put mobile data here
- show(homeData);
 function womenpage(){
     window.open("women.html");
 }
@@ -167,6 +177,7 @@ fiterableData=el;
   img.src=product.img;
   let product_price = document.createElement("p");
   product_price.textContent=product.mrp;
+  product_price.style.textDecorationLine="line-through";
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
@@ -174,7 +185,7 @@ fiterableData=el;
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
-  product_rating.textContent=product.rating+" "+":star:";
+  product_rating.textContent=product.rating+" "+"⭐";
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
   div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
@@ -183,5 +194,5 @@ fiterableData=el;
 }
 
 
-
+show(menData);
 </script>
