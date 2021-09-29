@@ -24,14 +24,14 @@
             background-color: white;
             color:#24a3b5;
         }
-        #img{
-            width:70px;
-            height:30px;
-            vertical-align: middle;
+        img{
+            width:60%;
+            height:35%;
+            margin: auto;
         }
+
         #containData{
-            width:90%;
-            margin:auto;
+            width:80%; 
             padding:2%;
             margin-top:2%;
             display:grid;
@@ -40,7 +40,7 @@
         #containData > div{
             background-color: white;
             margin-bottom: 30px;
-          padding: 30px;
+          padding: 20px;
         }
         #containData > div:hover{
             border: 2px solid #24A3B5;
@@ -52,6 +52,14 @@
             background-color: white;
             color:#24a3b5;
         }
+        #containData{
+           width: 80%;
+       }
+       #heading > img{
+            width:70px;
+            height:30px;
+            vertical-align: middle;
+       }
        
     </style>
 </head>
@@ -65,7 +73,10 @@
         <div onclick="homepage()" id="home">HOME & KITCHEN</div>
     </div>
     </div>
-    <div id="containData"></div>    
+    <div id="datafilters">
+        <div id="filters"></div>
+        <div id="containData"></div> 
+    </div>
 </body>
 </html>
 <script>

@@ -28,10 +28,16 @@
             width:70px;
             height:30px;
             vertical-align: middle;
+        img{
+            width:60%;
+            height:35%;
+            margin: auto;
         }
+
         #containData{
             width:90%;
             margin:auto;
+            width:80%; 
             padding:2%;
             margin-top:2%;
             display:grid;
@@ -41,6 +47,7 @@
             background-color: white;
             margin-bottom: 30px;
           padding: 30px;
+          padding:20px;
         }
         #containData > div:hover{
             border: 2px solid #24A3B5;
@@ -52,20 +59,37 @@
             background-color: white;
             color:#24a3b5;
         }
-       
+       #datafilters{
+           display: inline-block;
+       }
+       #filters{
+           width: 20%;
+       }
+       #containData{
+           width: 80%;
+       }
+       #heading > img{
+            width:70px;
+            height:30px;
+            vertical-align: middle;
+       }
     </style>
 </head>
 <body>
     <div id="header">
     <div id="heading">
         <img src="https://images.shopclues.com/images/ui/madeinindia.png" id="img"></img>
-        <div onclick="mobliepage()" id="mobiles">MOBILE & MORE</div>
+        <div onclick="mobilepage()" id="mobiles">MOBILE & MORE</div>
         <div onclick="menpage()" id="men">MEN</div>
         <div onclick="womenpage()" id="women">WOMEN</div>
         <div onclick="show(homeData)" id="home">HOME & KITCHEN</div>
     </div>
     </div>
-    <div id="containData"></div>    
+    <div id="datafilters">
+        <div id="filters"></div>
+        <div id="containData"></div> 
+    </div>
+      
 </body>
 </html>
 <script>
