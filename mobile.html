@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heading{
+            justify-content: center;
+            margin: auto;
+            width: 70%;
+        }
+        #heading > div{
+            display: inline-block;
+            margin-left: 20px;
+            padding:15px;
+        }
+        #header{
+            background-color: #24A3B5;
+            color:white;
+        }
+        #mobiles:hover,#men:hover,#women:hover,#home:hover{
+            background-color: white;
+            color:#24a3b5;
+        }
+        #img{
+            width:70px;
+            height:30px;
+            vertical-align: middle;
+        }
+        #containData{
+            width:90%;
+            margin:auto;
+            padding:2%;
+            margin-top:2%;
+            display:grid;
+            grid-template-columns: 24% 24% 24% 24%;
+        }
+        #containData > div{
+            background-color: white;
+            margin-bottom: 30px;
+          padding: 30px;
+        }
+        #containData > div:hover{
+            border: 2px solid #24A3B5;
+        }
+        body{
+            background-color: skyblue;
+        }
+        #mobiles{
+            background-color: white;
+            color:#24a3b5;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="header">
+    <div id="heading">
+        <img src="https://images.shopclues.com/images/ui/madeinindia.png" id="img"></img>
+        <div onclick="show(mobileData)" id="mobiles">MOBILE & MORE</div>
+        <div onclick="show(menData)" id="men">MEN</div>
+        <div onclick="show(womenData)" id="women">WOMEN</div>
+        <div onclick="show(homeData)" id="home">HOME & KITCHEN</div>
+    </div>
+    </div>
+    <div id="containData"></div>    
+</body>
+</html>
+<script>
+let parent =document.getElementById("containData");
+var fiterableData=[];
+let mobileData=[
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/97169/280/1/143849890-97169265-1551168395.jpg",
+            name:"Kichoda 113 Rk9",
+            mrp:"₹1119",
+            discount:"36%",
+            rating:4.1,
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/111557/280/1/151256411-111557541-1605795037.jpg",
+            name:"S4 Fast Type C Charger for Vivo V17 Pro/Y5",
+            mrp:"₹276",
+            discount:"70%",
+            rating:3.5,
+        },
+        { img:"https://cdn.shopclues.com/images1/thumbnails/113435/280/1/152095050-113435241-1615803437.jpg",
+            name:"Portronics Modesk 200 POR-1203 Universal ",
+            mrp:"₹699",
+            discount:"87%",
+            rating:4.2,
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/114509/280/1/152435006-114509479-1624859130.jpg",
+            name:"HP Notebook 14s-dk0093au (R5-3500U/8GB",
+            mrp:"₹52000",
+            discount:"2%",
+            rating:5,
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/111967/280/1/151412100-111967441-1605206495.jpg",
+            name:"Samsung Galaxy Note 8 Phone",
+            mrp:"₹50000",
+            discount:"50%",
+            rating:4,
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/113794/280/1/152213252-113794193-1619002101.jpg",
+            name:"OPPO A54 (4 GB RAM, 64 GB ROM)",
+            mrp:"₹14699",
+            discount:"9%",
+            rating:"4.3",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/111954/280/1/151404610-111954140-1605072745.jpg",
+            name:"OPPO A15 (3GB RAM, 32GB Storage)",
+            mrp:"10990",
+            discount:"24%",
+            rating:"4.1",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/114623/280/1/152498333-114623644-1625885890.jpg",
+            name:"OPPO A33 (Moonlight Black, 32 GB) (3 GB RAM)",
+            mrp:"10990",
+            discount:"30%",
+            rating:"4.7",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/114384/280/1/152384827-114384201-1623162456.jpg",
+            name:"Micromax IN Note 1 (Green, 128 GB) (4 GB RAM)",
+            mrp:"13499",
+            discount:"27%",
+            rating:"2",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/109395/280/1/150611869-109395058-1601281407.jpg",
+            name:"Micromax Canvas Infinity HS2 3 GB RAM 32 GB RO",
+            mrp:"8000",
+            discount:"44%",
+            rating:"3",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/113500/280/1/152119261-113500306-1616596266.jpg",
+            name:"Infinix Smart HD 2021 (Topaz Blue, 32 GB) (2 GB R",
+            mrp:"8000",
+            discount:"25%",
+            rating:"4",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/113500/280/1/152119261-113500306-1616596266.jpg",
+            name:"Infinix Smart 5 (Morandi Green, 32 GB) (2 GB RAM)",
+            mrp:"8500",
+            discount:"25%",
+            rating:"3.5",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/114824/280/1/152565258-114824483-1627054506.jpg",
+            name:"Infinix Hot 10S (Morandi Green, 64 GB) (4 GB RAM)",
+            mrp:"11500",
+            discount:"23%",
+            rating:"4.5",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/112535/280/1/151713279-112535043-1608722333.jpg",
+            name:"BONTECH 32 GB PENDRIVE",
+            mrp:"1000",
+            discount:"40%",
+            rating:"4.5",
+        },
+        {
+            img:"https://cdn.shopclues.com/images1/thumbnails/114074/280/1/152295153-114074376-1621143368.jpg",
+            name:"SanDisk Cruzer Blade 64GB USB 2.0 Pen Drive",
+            mrp:"650",
+            discount:"20",
+            rating:"4",
+        }
+
+    ]; // Put mobile data here
+show(mobileData);
+function show(el){
+parent.innerHTML="";
+fiterableData=el;
+  el.forEach(function(product){
+  let div= document.createElement("div");
+  let img = document.createElement("img");
+  img.src=product.img;
+  let product_price = document.createElement("p");
+  product_price.textContent=product.mrp;
+  let product_name = document.createElement("p");
+  product_name.textContent=product.name;
+  let product_discount = document.createElement("p");
+  product_discount.textContent=product.discount+" "+"off";
+  product_discount.style.color="#24A3B5"
+  product_discount.style.fontSize="20px"
+  let product_rating = document.createElement("p");
+  product_rating.textContent=product.rating+" "+":star:";
+  let addToCart_btn = document.createElement("button");
+  addToCart_btn.innerText="Add To Cart";
+  div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
+  parent.append(div);
+});  
+}
+
+
+
+</script>

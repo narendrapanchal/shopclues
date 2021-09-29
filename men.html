@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heading{
+            justify-content: center;
+            margin: auto;
+            width: 70%;
+        }
+        #heading > div{
+            display: inline-block;
+            margin-left: 20px;
+            padding:15px;
+        }
+        #header{
+            background-color: #24A3B5;
+            color:white;
+        }
+        #mobiles:hover,#men:hover,#women:hover,#home:hover{
+            background-color: white;
+            color:#24a3b5;
+        }
+        #img{
+            width:70px;
+            height:30px;
+            vertical-align: middle;
+        }
+        #containData{
+            width:90%;
+            margin:auto;
+            padding:2%;
+            margin-top:2%;
+            display:grid;
+            grid-template-columns: 24% 24% 24% 24%;
+        }
+        #containData > div{
+            background-color: white;
+            margin-bottom: 30px;
+          padding: 30px;
+        }
+        #containData > div:hover{
+            border: 2px solid #24A3B5;
+        }
+        body{
+            background-color: skyblue;
+        }
+        #men{
+            background-color: white;
+            color:#24a3b5;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="header">
+    <div id="heading">
+        <img src="https://images.shopclues.com/images/ui/madeinindia.png" id="img"></img>
+        <div onclick="mobilepage()" id="mobiles">MOBILE & MORE</div>
+        <div onclick="show(menData)" id="men">MEN</div>
+        <div onclick="womenpage()" id="women">WOMEN</div>
+        <div onclick="homepage()" id="home">HOME & KITCHEN</div>
+    </div>
+    </div>
+    <div id="containData"></div>    
+</body>
+</html>
+<script>
+let parent =document.getElementById("containData");
+var fiterableData=[];
+let menData=[{name:"Pause Olive Solid Shawl Collar Cardigan",
+mrp:"1099",
+discount:"52",
+rating:"3",
+img:"https://cdn.shopclues.com/images1/thumbnails/103065/320/1/147976958-103065391-1587804134.jpg"},
+{name:"Veirdo Men's Maroon V-Neck T-shirt",
+mrp:"999",
+discount:"73",
+rating:"4.0",
+img:"https://cdn.shopclues.com/images/thumbnails/86292/200/200/129791864TSHV26BLKMRNCopy1507883025.jpg"},
+{name:"Stylogue Olive Printed Half Sleeves T-Shirt",
+mrp:"299",
+discount:"40",
+rating:"3.2",
+img:"https://cdn.shopclues.com/images1/thumbnails/114435/160/160/152402990-114435286-1623836440.jpg"},
+{name:"PE Men's Brown Long Sleeve Regular Fit T-Shirt",
+mrp:"1999",
+discount:"67",
+rating:"4.2",
+img:"https://cdn.shopclues.com/images1/thumbnails/79269/320/320/134551427-79269186-1560489876.jpg"},
+{name:"Pause Black Stylish hand Zip Bomby Winter Jacket ",
+mrp:"1499",
+discount:"63",
+rating:"3.9",
+img:"https://cdn.shopclues.com/images1/thumbnails/115272/320/1/150739973-115272207-1631620898.jpg"},
+{name:"Woakers Men's White-Orange Sneakers",
+mrp:"899",
+discount:"41",
+rating:"4.0",
+img:"https://cdn.shopclues.com/images1/thumbnails/111789/320/1/151324271-111789356-1608656401.jpg"},
+{name:"NIKE AIR MAX 2020 BLACK RUNING SHOES",
+mrp:"15995",
+discount:"87",
+rating:"4.4",
+img:"https://cdn.shopclues.com/images1/thumbnails/105345/280/1/149172856-105345517-1583313897.jpg"},
+{name:"Fashlook Men White Block Sky Blue Slim Fit Casual Shirt",
+mrp:"3295",
+discount:"83",
+rating:"4.6",
+img:"https://cdn.shopclues.com/images1/thumbnails/107050/160/160/149812588-107050856-1590565042.jpg"},
+{name:"Lee Peeter Men's Tan Patent Formal Shoe",
+mrp:"1999",
+discount:"72",
+rating:"4.1",
+img:"https://cdn.shopclues.com/images1/thumbnails/90035/320/1/139855539-90035166-1531377013.jpg"},
+{name:"LeatherRetail White Spanish Faux Leather Jacket For Man",
+mrp:"4999",
+discount:"65",
+rating:"3.5",
+img:"https://cdn.shopclues.com/images1/thumbnails/91593/320/1/140445912-91593353-1535448217.jpg"},
+{name:"Stylogue Round Neck Half Sleeve T-shirt For Men",
+mrp:"699",
+discount:"70",
+rating:"3.7",
+img:"https://cdn.shopclues.com/images1/thumbnails/108959/280/1/150492191-108959097-1609164011.jpg"},
+{name:"Trendyz Men White Cotton Hooded Tshirt",
+mrp:"1299",
+discount:"56",
+rating:"4.3",
+img:"https://cdn.shopclues.com/images1/thumbnails/105344/320/1/149172711-105344979-1600845832.jpg"},
+{name:"Mishor Men Grey Plain Hooded Sweatshirt",
+mrp:"1499",
+discount:"53",
+rating:"4.7",
+img:"https://cdn.shopclues.com/images1/thumbnails/112932/320/320/151886403-112932676-1610972024.jpg"},
+{name:"FrionKandy Cotton Block Print Shirt",
+mrp:"1399",
+discount:"70",
+rating:"4.2",
+img:"https://cdn.shopclues.com/images1/thumbnails/110878/280/1/151050227-110878355-1602037025.jpg"},
+{name:"Men's White Black Round Neck Color Block T-Shirt",
+mrp:"399",
+discount:"30",
+rating:"4.0",
+img:"https://cdn.shopclues.com/images1/thumbnails/101924/280/1/147322523-101924415-1563454231.jpg"},]; // put all men data here
+ // Put mobile data here
+ show(homeData);
+function womenpage(){
+    window.open("women.html");
+}
+function homepage(){
+    window.open("home.html");
+}
+function mobilepage(){
+    window.open("mobile.html");
+}
+show(menData);
+function show(el){
+parent.innerHTML="";
+fiterableData=el;
+  el.forEach(function(product){
+  let div= document.createElement("div");
+  let img = document.createElement("img");
+  img.src=product.img;
+  let product_price = document.createElement("p");
+  product_price.textContent=product.mrp;
+  let product_name = document.createElement("p");
+  product_name.textContent=product.name;
+  let product_discount = document.createElement("p");
+  product_discount.textContent=product.discount+" "+"off";
+  product_discount.style.color="#24A3B5"
+  product_discount.style.fontSize="20px"
+  let product_rating = document.createElement("p");
+  product_rating.textContent=product.rating+" "+":star:";
+  let addToCart_btn = document.createElement("button");
+  addToCart_btn.innerText="Add To Cart";
+  div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
+  parent.append(div);
+});  
+}
+
+
+
+</script>
