@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp&Register</title>
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+        }
+    body{
+    background-color: black;
+    }
+    #contain{
+        width:900px;
+        height:500px;
+        background-color: white;
+        margin:auto;
+        vertical-align: middle;
+        display: flex;
+        padding:3%;
+    }
+    #contain1{
+        width:30%;
+        background-color: #fbfbfb;
+    }
+    #boxincontain1{
+        width:90%;
+        margin:2%;
+        padding:2%;
+        height:27%;
+        text-align:center;
+    }    
+    #boxincontain1>:nth-child(1){
+        margin-top: 8%;
+    }
+    #boxincontain1>:nth-child(2){
+        color:#424242;
+        font-size:medium;
+        font-weight:bolder;
+    }
+    #boxincontain1>:nth-child(3){
+        color:gray;
+        font-size:small;
+    }
+
+    #contain2{
+        width:70%;
+    }
+    #login,#signup{
+        background-color: white;
+        color:gray;
+        border:1px solid white;
+        font-size: medium;
+        margin:10px;    
+        font:normal 400 17px 'Roboto', Arial, Helvetica, sans-serif;  
+    }
+    #login:hover,#signup:hover{
+        color:#24a3b5;
+        text-decoration-line:underline ;
+    }    
+    #inp{
+        margin:10%;
+        display:grid;
+        grid-template-columns: auto;
+        gap:80%;
+    }
+    #inp2{
+        margin:10%;
+        display:grid;
+        grid-template-columns: auto;
+        gap:40%;
+    }    
+    #btn1{
+       background-color: #FF5722;
+       color:white;
+       border:1px solid #FF5722;
+       font-weight: bolder;
+       font-size:smaller;
+       width:150px;
+       padding:1%;
+       border-radius: 5px;
+       margin-top: 5%;
+       margin-left: 23%;
+       margin-right: 2%;
+    }
+    #btn2{
+        background-color: white;
+        border:1px solid #FF5722;
+        color:#FF5722;
+        font-weight: bolder;
+       font-size:smaller;
+       width:150px;
+       padding:1%;
+       border-radius: 5px;      
+    }
+
+    </style>
+</head>
+<body>
+    <h3 style="color: white; text-align: center;">WELCOME TO LogIn/Register Page</h3>
+    <div id="contain">
+
+     <div id="contain1"> 
+         <div id="boxincontain1">
+             <img src="https://via.placeholder.com/50x50"/>
+             <div>Loyalty Points</div>
+             <p>Earn CluesBucks on prepaid orders</p>
+         </div>
+
+         <div id="boxincontain1">
+            <img src="https://via.placeholder.com/50x50"/>
+            <div>Instant Checkout</div>
+            <p>Hassle-Free Payment Everytime</p>
+        </div>
+       
+        <div id="boxincontain1">
+            <img src="https://via.placeholder.com/50x50"/>
+            <div>Exclusive Offers</div>
+            <p>For special offers & value deals</p>
+        </div>        
+     </div>
+
+     <div id="contain2">   
+    <button id="login" onclick="login()">LOGIN</button>
+    <button id="signup" onclick="register()">REGISTER</button> 
+
+    <div id="btns"></div>
+    </div>
+
+    </div>
+
+    <script>   
+
+let mainParent=document.getElementById("contain2");
+
+let parent = document.createElement("form");
+
+let btnParent=document.getElementById("btns");
+
+
+function login(){ // login page
+    parent.innerHTML="";
+    btnParent.innerHTML="";
+    parent.setAttribute("id","inp");
+    mainParent.append(parent);
+
+let input4=document.createElement("input");
+input4.placeholder="Enter your Email or Mobile Number";
+parent.append(input4);
+
+let input5=document.createElement("input");
+input5.placeholder="Enter your Password";
+parent.append(input5);
+
+let bttn1=document.createElement("button");
+bttn1.setAttribute("id","btn1");
+bttn1.textContent="Login";
+bttn1.addEventListener("click",logginn);
+btnParent.append(bttn1);
+    
+let bttn2=document.createElement("button");
+bttn2.setAttribute("id","btn2");
+bttn2.textContent="Login via Mobile";
+bttn2.addEventListener("click",logginnmob);
+btnParent.append(bttn2);
+
+mainParent.append(btnParent);
+
+
+function logginn(){ // retrieve data from localstorage and check it with data entered
+
+let email=input4.value;
+let password=input5.value; 
+
+
+let info = JSON.parse(localStorage.getItem("Users"));
+let count=0;
+info.forEach(function(newUser){
+  if(email==newUser.email && password==newUser.password){
+    window.location.href="homedata.html";
+    alert("Login Successful");
+  }
+  else{
+      count++;
+      if(count==info.length){
+      alert("Invalid Credentials");
+      }
+  }
+});
+
+}
+
+function logginnmob(){ // if you dont remember your email id and password , you can directly put your regitered phone number
+
+let phone=input4.value;
+let password=input5.value;
+
+let info2 = JSON.parse(localStorage.getItem("Users"));
+let count2=0;
+info2.forEach(function(newUser){
+  if(phone==newUser.phone&& password==newUser.password){
+    window.location.href="homedata.html";
+    alert("Login Successful");
+  }
+  else{
+      count2++;
+      if(count2==info2.length){
+      alert("Invalid Credentials");
+      }
+  }
+});
+}
+
+
+}
+
+
+function register(){ // Register page
+   parent.innerHTML=""; 
+   btnParent.innerHTML="";
+    parent.setAttribute("id","inp2");
+    mainParent.append(parent);   
+
+let input1=document.createElement("input");
+input1.placeholder="Enter your Email";
+parent.append(input1);
+
+let input2=document.createElement("input");
+input2.placeholder="Enter your Phone";
+parent.append(input2);
+
+let input3=document.createElement("input");
+input3.placeholder="Enter your Password";
+parent.append(input3);
+
+let bttn3=document.createElement("button");
+bttn3.setAttribute("id","btn1");
+bttn3.textContent="Register";
+bttn3.addEventListener("click",reggister); 
+btnParent.append(bttn3);
+mainParent.append(btnParent);
+
+
+
+function reggister(){ // to save data to local storage when clicked on register button.
+
+let email = input1.value;
+let phone = input2.value;
+let password = input3.value;
+
+
+
+if(localStorage.getItem("Users")===null){ // to create users which will contain userdata in localstorage
+        localStorage.setItem("Users",JSON.stringify([]));
+    }
+
+    let User={ // in case the object key and value are same we can write directly like written below
+        email,
+        phone,
+        password,
+    }
+
+    // get array from localstorage
+
+    let arrData=JSON.parse(localStorage.getItem("Users"));//existing user
+
+    // push new user to array
+if(email!=""&&phone!=""&&password!=""){
+    arrData.push(User); // new user
+    alert("Registration Successful");
+    login(); // To go from signup to login page when clicked on register
+}
+else{
+    alert("Please complete all fields");
+}
+    localStorage.setItem("Users",JSON.stringify(arrData));
+
+}
+
+}
+
+
+
+    </script>
+</body>
+</html>
