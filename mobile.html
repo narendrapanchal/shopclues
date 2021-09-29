@@ -60,9 +60,9 @@
     <div id="heading">
         <img src="https://images.shopclues.com/images/ui/madeinindia.png" id="img"></img>
         <div onclick="show(mobileData)" id="mobiles">MOBILE & MORE</div>
-        <div onclick="show(menData)" id="men">MEN</div>
-        <div onclick="show(womenData)" id="women">WOMEN</div>
-        <div onclick="show(homeData)" id="home">HOME & KITCHEN</div>
+        <div onclick="menpage()" id="men">MEN</div>
+        <div onclick="womenpage()" id="women">WOMEN</div>
+        <div onclick="homepage()" id="home">HOME & KITCHEN</div>
     </div>
     </div>
     <div id="containData"></div>    
@@ -178,7 +178,16 @@ let mobileData=[
         }
 
     ]; // Put mobile data here
-show(mobileData);
+    function womenpage(){
+    window.open("women.html");
+}
+function menpage(){
+    window.open("men.html");
+}
+function homepage(){
+    window.open("home.html");
+}
+
 function show(el){
 parent.innerHTML="";
 fiterableData=el;
@@ -203,6 +212,6 @@ fiterableData=el;
 });  
 }
 
-
+show(mobileData);
 
 </script>

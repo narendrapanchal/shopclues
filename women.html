@@ -59,10 +59,10 @@
     <div id="header">
     <div id="heading">
         <img src="https://images.shopclues.com/images/ui/madeinindia.png" id="img"></img>
-        <div onclick="show(mobileData)" id="mobiles">MOBILE & MORE</div>
-        <div onclick="show(menData)" id="men">MEN</div>
+        <div onclick="mobilepage()" id="mobiles">MOBILE & MORE</div>
+        <div onclick="menpage()" id="men">MEN</div>
         <div onclick="show(womenData)" id="women">WOMEN</div>
-        <div onclick="show(homeData)" id="home">HOME & KITCHEN</div>
+        <div onclick="mobilepage()" id="home">HOME & KITCHEN</div>
     </div>
     </div>
     <div id="containData"></div>    
@@ -171,7 +171,15 @@ let womenData=[    {
       rating:3.5,
       img:"https://cdn.shopclues.com/images1/thumbnails/105177/320/1/149104575-105177438-1582197699.jpg"
       },]; // Put mobile data here
-show(womenData);
+      function mobilepage(){
+    window.open("mobile.html");
+}
+function menpage(){
+    window.open("men.html");
+}
+function homepage(){
+    window.open("home.html");
+}
 function show(el){
 parent.innerHTML="";
 fiterableData=el;
@@ -196,6 +204,6 @@ fiterableData=el;
 });  
 }
 
-
+show(womenData);
 
 </script>
