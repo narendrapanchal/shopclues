@@ -47,8 +47,7 @@
         <form onsubmit="add(event)" id="myForm">   
             <input type ="text" id="pass" placeholder="Enter your Password"/>            
             <input type ="text" id="name" placeholder="Enter Username"/>
-            <input type ="text" id="address" placeholder="Enter Address"/>
-            <input type ="text" id="image" placeholder="Enter Image Address"/>            
+            <input type ="text" id="address" placeholder="Enter Address"/>          
             <input type ="submit" id="sbt1"/>
             </form> 
     </div>
@@ -63,14 +62,13 @@
     let password=myForm.pass.value;
     let name =myForm.name.value;
     let address=myForm.address.value;   
-    let imgAddress=myForm.image.value;
 
     var newData=JSON.parse(localStorage.getItem("Users"));
 
 var count=0;    
 for(var i=0;i<newData.length;i++){    
 if(password==newData[i].password){
-if(name!=""&&address!=""&&imgAddress!=""){    
+if(name!=""&&address!=""){    
     newData[i]["username"]=name;
     newData[i]["address"]=address;
     newData[i]["image"]=imgAddress;  
