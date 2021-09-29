@@ -20,8 +20,7 @@
             
         }
         ion-icon {
-         color: #24A3B5;
-         
+         color: #24A3B5;   
          }
         #mainbar>a>img{
             width:70%;
@@ -125,22 +124,22 @@
           display: block;
        }
        a {
-  text-decoration: none !important;
-}
+     text-decoration: none !important;
+       }
 
     </style>
 </head>
 <body>
     <div id="mainbar">
-        <a href=cart1.html><img src="https://images.shopclues.com/images/ui/shopclues_logo@2x.png" width="80%" /></a></a>
+        <a href="frontpage.html"><img src="https://images.shopclues.com/images/ui/shopclues_logo@2x.png"  /></a>
         <div class="searchbox">
             <ion-icon name="search-outline"></ion-icon>
             <input id="search_item" type="text" placeholder="What's in your mind today?"/>
             <button onclick="search()">Search</button>
           </div>
             
-        <a href=cart1.html target="_blank"><ion-icon name="notifications-outline"></ion-icon></a>
-        <a href=cart1.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
+        <a href=cart1.html target="_blank"><ion-icon name="notifications-outline" ></ion-icon></a>
+        <a href=cart1.html target="_blank"><ion-icon name="heart-outline" ></ion-icon></a>
         <a href=cart1.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
         <h3><a href=cart1.html>Sign In</a>
           <ul>
@@ -150,8 +149,6 @@
             <li><a href=cart.html>Help & Support</a></li>
             <li><a href=cart.html>My favourite stores</a></li>
           </ul>
-         
-          </a>
         </h3>
         </div>
     <div id="header">
@@ -164,7 +161,6 @@
     </div>
     </div>
     <div id="containData"></div>    
-
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
@@ -621,6 +617,7 @@ fiterableData=el;
   img.src=product.img;
   let product_price = document.createElement("p");
   product_price.textContent=product.mrp;
+  product_price.style.textDecorationLine="line-through";
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
@@ -629,6 +626,7 @@ fiterableData=el;
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
   product_rating.textContent=product.rating+" "+"⭐";
+
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
   div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
@@ -642,6 +640,4 @@ function search()
      
      alert("searched for");
     }
-
-
 </script>
