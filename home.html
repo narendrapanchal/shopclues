@@ -24,11 +24,8 @@
             background-color: white;
             color:#24a3b5;
         }
-        #img{
-            width:70px;
-            height:30px;
-            vertical-align: middle;
-        }
+
+
         img{
             width:60%;
             height:35%;
@@ -46,7 +43,6 @@
         #containData > div{
             background-color: white;
             margin-bottom: 30px;
-          padding: 30px;
           padding:20px;
         }
         #containData > div:hover{
@@ -60,19 +56,24 @@
             color:#24a3b5;
         }
        #datafilters{
-           display: inline-block;
+           display: flex;
        }
        #filters{
            width: 20%;
+           flex-grow: 1;
+           padding:2%;
+            margin-top:2%;
        }
        #containData{
            width: 80%;
+           flex-grow: 3;
        }
        #heading > img{
             width:70px;
             height:30px;
             vertical-align: middle;
        }
+       
     </style>
 </head>
 <body>
@@ -86,7 +87,35 @@
     </div>
     </div>
     <div id="datafilters">
-        <div id="filters"></div>
+        <div id="filters">
+            <div>
+                <label for="">Filter by price</label>
+                <br/>
+                <input type="text" placeholder="min" id="minPrice">
+                <input type="text" placeholder="max" id="maxPrice">
+                <button id="priceFilterHL">Apply Hight To Low</button>
+                <button id="priceFilterLH">Apply Low To High</button>
+            </div>
+            <br>
+            <div>
+                <label for="">Filter By Rating</label>
+                <br/>
+                <input type="text" placeholder="min" id="minRating">
+                <input type="text" placeholder="max" id="maxRating">
+                <button id="ratingFilterHL">Apply Hight To Low</button>
+                <button id="ratingFilterLH">Apply Low To High</button>
+            </div>
+            <br>
+            <div>
+                <label for="">Filter By Discount</label>
+                <br/>
+                <input type="text" placeholder="min" id="minDiscount">
+                <input type="text" placeholder="max" id="maxDiscount">
+                <button id="discountFilterHL">Apply Hight To Low</button>
+                <button id="discountFilterLH">Apply Low To High</button>
+            </div>
+            
+        </div>
         <div id="containData"></div> 
     </div>
       
