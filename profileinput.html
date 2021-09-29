@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+        }        
+        body{
+            background-color: whitesmoke;
+            color:white;          
+        }
+        #containData{
+            width:700px;
+            height:500px;
+            border:1px solid #24a3b5;
+            margin:auto;
+            background-color: #24a3b5;
+        }
+        #myForm{
+        margin:10%;
+        display:grid;
+        grid-template-columns: auto;
+        gap:40%;
+        }
+        #sbt1{
+       background-color: #FF5722;
+       color:white;
+       border:1px solid #FF5722;
+       font-weight: bolder;
+       font-size:smaller;
+       width:150px;
+       padding:1%;
+       border-radius: 5px;
+       margin-top: 5%;
+       margin-left: 37%;
+       margin-right: 2%;
+    }        
+    </style>
+</head>
+<body>
+    <h3 style="color: black; text-align: center;">WELCOME TO PROFILE</h3>
+    <div id="containData">
+        <form onsubmit="add(event)" id="myForm">   
+            <input type ="text" id="pass" placeholder="Enter your Password"/>            
+            <input type ="text" id="name" placeholder="Enter Username"/>
+            <input type ="text" id="address" placeholder="Enter Address"/>
+            <input type ="text" id="image" placeholder="Enter Image Address"/>            
+            <input type ="submit" id="sbt1"/>
+            </form> 
+    </div>
+
+
+<script>
+  function add(e){  
+    e.preventDefault();
+
+    let myForm=document.getElementById("myForm");
+
+    let password=myForm.pass.value;
+    let name =myForm.name.value;
+    let address=myForm.address.value;   
+    let imgAddress=myForm.image.value;
+
+    var newData=JSON.parse(localStorage.getItem("Users"));
+
+var count=0;    
+for(var i=0;i<newData.length;i++){    
+if(password==newData[i].password){
+if(name!=""&&address!=""&&imgAddress!=""){    
+    newData[i]["username"]=name;
+    newData[i]["address"]=address;
+    newData[i]["image"]=imgAddress;  
+}
+else{
+    alert("Please complete all fields");
+}
+}
+else{
+    count++;
+}
+if(count==newData.length){
+    alert("Incorrect Password");
+}
+}
+
+     localStorage.setItem("Users",JSON.stringify(newData))
+  }     
+</script>
+
+</body>
+</html>
