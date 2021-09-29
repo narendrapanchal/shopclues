@@ -199,6 +199,7 @@ fiterableData=el;
   img.src=product.img;
   let product_price = document.createElement("p");
   product_price.textContent=product.mrp;
+  product_price.style.textDecorationLine="line-through";
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
@@ -206,7 +207,7 @@ fiterableData=el;
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
-  product_rating.textContent=product.rating+" "+":star:";
+  product_rating.textContent=product.rating+" "+"⭐";
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
   div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
