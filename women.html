@@ -70,6 +70,9 @@
             height:30px;
             vertical-align: middle;
        }
+       span{
+           margin-left: 10px;
+       }
     </style>
 </head>
 <body>
@@ -354,12 +357,23 @@ fiterableData=el;
   let img = document.createElement("img");
   img.src=product.img;
   let product_price = document.createElement("p");
-  product_price.textContent=product.mrp;
-  product_price.style.textDecorationLine="line-through";
+  // Three types of price current total paybel
+  let exprice=document.createElement("span");
+  let totalprice=document.createElement("span");
+  let currprice=document.createElement("span");
+
+  currprice.textContent="₹"+product.mrp;
+  var total=Math.ceil(((product.mrp/(100-product.discount))*100));
+  totalprice.textContent="₹"+total;
+  var exdiscount=Math.ceil(total*(product.discount/2))/100
+  exprice.textContent="ex ₹"+Math.ceil(total-exdiscount);
+  totalprice.style.textDecorationLine="line-through"
+  exprice.style.textDecorationLine="line-through"
+  product_price.append(exprice,totalprice,currprice);
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
-  product_discount.textContent=product.discount+" "+"off";
+  product_discount.textContent=product.discount+" % "+"off";
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
