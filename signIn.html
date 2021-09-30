@@ -10,20 +10,22 @@
             font-family: 'Roboto', sans-serif;
         }
     body{
-    background-color: black;
+    background-image: url("https://lh3.googleusercontent.com/2X5UqMCQ4mSID9TEAD5MW63PHYMts7oAy6L8AA1IkRX_C5Bho70E1ql7QpDVzjTZrlTgGR_kgxCnHk3nxZib4fDKzZ2PnjYhfkBpnWv43qCESYDrLqrxN8XwNERj7kL5shBXEN_UyD6rkn1XAO9vmpL8Otm4K83tu37zc3IEIID6fGzs0RijDr4v5O10OVlfSxQ6bAf2wDIhtCxs3Vrl3iPOOVV8ZJCZWqHTB1ptNFl3uBLjL2vVu7zEUpHogEIMWGd3WJ9GvPHP5DK6rM08DzPhvZlmMB0tE493j3ej9mWe_cX4Phj3MNIA3RzxgMgV8T3YsZ2Q2bmJnPFOj6to6_v_rH5RNDQzQA1T8G_-vPvelFvBoyC3XOgcd0WFCATtsfShTc1eg2EEf9zZeblr6MQPYNteURNfZDU1HcB2PCeLZ9BHzC9C3kVXBbGL2jRFNy1cgnI8bZvZxgl-iJQQmBXoAt0D07J84qJhd8DqPllb_iWXzxx110id15Hoi2K8N_QviMQcRrLBUD87GRjSi16P3cPh63RANb_eoWkurYrSKSP1X7KDNUb81qsuvdNwSLe3Q04MvhLOBnn6MPlF3hZsW5jphyjxzhsMrMuIVilSuQBVUTbuyeuSPkFvt8u8_Xgxgq98VE_RwgYMvqMlwRaPvzpWMX9bhwI4dFaEruDkwWBGOHSyAkBbRQtli7rIu4IbVSjb27qlqJLnMAJ_Zjd-1A=w1350-h598-no?authuser=0");
+    backdrop-filter: blur(5px);
+    background-size: contain;
+    background-repeat: no-repeat;
     }
     #contain{
-        width:900px;
-        height:500px;
-        background-color: white;
+        width:700px;
+        height:470px;
+        background-color: rgba(255, 255, 255, 0.966);
         margin:auto;
-        vertical-align: middle;
         display: flex;
         padding:3%;
     }
     #contain1{
         width:30%;
-        background-color: #fbfbfb;
+        background-color: #f7f4f4;
     }
     #boxincontain1{
         width:90%;
@@ -95,28 +97,31 @@
        padding:1%;
        border-radius: 5px;      
     }
-
+    img{
+        width: 50px;
+        height: 50px;
+    }
     </style>
 </head>
 <body>
-    <h3 style="color: white; text-align: center;">WELCOME TO LogIn/Register Page</h3>
+    <h3 style="color: rgb(107, 55, 55); text-align: center;">WELCOME TO LogIn/Register Page</h3>
     <div id="contain">
 
      <div id="contain1"> 
          <div id="boxincontain1">
-             <img src="https://via.placeholder.com/50x50"/>
+             <img src="https://thumbs.dreamstime.com/b/coins-indian-rupee-coin-hand-money-hand-coins-indian-rupee-coin-hand-money-hand-icon-126508875.jpg"/>
              <div>Loyalty Points</div>
              <p>Earn CluesBucks on prepaid orders</p>
          </div>
 
          <div id="boxincontain1">
-            <img src="https://via.placeholder.com/50x50"/>
+            <img src="https://as2.ftcdn.net/v2/jpg/03/18/62/29/500_F_318622912_IgyaJDXVei9YTsw2BWuJzQLxY6Mr6kDE.jpg"/>
             <div>Instant Checkout</div>
             <p>Hassle-Free Payment Everytime</p>
         </div>
        
         <div id="boxincontain1">
-            <img src="https://via.placeholder.com/50x50"/>
+            <img src="https://cdn-icons-png.flaticon.com/512/879/879757.png"/>
             <div>Exclusive Offers</div>
             <p>For special offers & value deals</p>
         </div>        
@@ -174,20 +179,43 @@ function logginn(){ // retrieve data from localstorage and check it with data en
 let email=input4.value;
 let password=input5.value; 
 
-
 let info = JSON.parse(localStorage.getItem("Users"));
 let count=0;
+let countActive=0;
+
 info.forEach(function(newUser){
   if(email==newUser.email && password==newUser.password){
-    window.location.href="homedata.html";
+   window.location.href="frontpage.html";
     alert("Login Successful");
+    
+    //for active user
+    localStorage.setItem("activeUser",JSON.stringify([]));
+
+    let userActive={
+        Email:newUser.email,
+        Phone:newUser.phone,
+        Password:newUser.password,
+        id:"active",
+    }
+    let activeData=JSON.parse(localStorage.getItem("activeUser"));
+
+    if(countActive==0){ // to make sure only logged in user gets into active data
+    activeData.push(userActive);
+    countActive++;
+    }
+    else{
+    activeData.pop();
+    activeData.push(userActive);
+    }
+    localStorage.setItem("activeUser",JSON.stringify(activeData));
+    //
   }
   else{
       count++;
       if(count==info.length){
       alert("Invalid Credentials");
       }
-  }
+  }  
 });
 
 }
@@ -197,12 +225,39 @@ function logginnmob(){ // if you dont remember your email id and password , you 
 let phone=input4.value;
 let password=input5.value;
 
+
 let info2 = JSON.parse(localStorage.getItem("Users"));
 let count2=0;
+let countActive=0;
+
 info2.forEach(function(newUser){
   if(phone==newUser.phone&& password==newUser.password){
-    window.location.href="homedata.html";
+    window.location.href="frontpage.html";
     alert("Login Successful");
+
+    //for active user
+    localStorage.setItem("activeUser",JSON.stringify([]));
+
+    let userActive={
+        Email:newUser.email,
+        Phone:newUser.phone,
+        Password:newUser.password,
+        id:"active",
+    }
+    let activeData=JSON.parse(localStorage.getItem("activeUser"));
+
+    if(countActive==0){ // to make sure only logged in user gets into active data
+    activeData.push(userActive);
+    countActive++;
+    }
+    else{
+    activeData.pop();
+    activeData.push(userActive);
+    }
+    localStorage.setItem("activeUser",JSON.stringify(activeData));
+    //
+
+
   }
   else{
       count2++;
@@ -257,9 +312,9 @@ if(localStorage.getItem("Users")===null){ // to create users which will contain 
     }
 
     let User={ // in case the object key and value are same we can write directly like written below
-        email,
-        phone,
-        password,
+       email: email,
+       phone: phone,
+       password: password,
     }
 
     // get array from localstorage
