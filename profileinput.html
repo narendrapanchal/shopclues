@@ -10,15 +10,18 @@
             font-family: 'Roboto', sans-serif;
         }        
         body{
-            background-color: whitesmoke;
-            color:white;          
+            background-image: url("https://lh3.googleusercontent.com/2X5UqMCQ4mSID9TEAD5MW63PHYMts7oAy6L8AA1IkRX_C5Bho70E1ql7QpDVzjTZrlTgGR_kgxCnHk3nxZib4fDKzZ2PnjYhfkBpnWv43qCESYDrLqrxN8XwNERj7kL5shBXEN_UyD6rkn1XAO9vmpL8Otm4K83tu37zc3IEIID6fGzs0RijDr4v5O10OVlfSxQ6bAf2wDIhtCxs3Vrl3iPOOVV8ZJCZWqHTB1ptNFl3uBLjL2vVu7zEUpHogEIMWGd3WJ9GvPHP5DK6rM08DzPhvZlmMB0tE493j3ej9mWe_cX4Phj3MNIA3RzxgMgV8T3YsZ2Q2bmJnPFOj6to6_v_rH5RNDQzQA1T8G_-vPvelFvBoyC3XOgcd0WFCATtsfShTc1eg2EEf9zZeblr6MQPYNteURNfZDU1HcB2PCeLZ9BHzC9C3kVXBbGL2jRFNy1cgnI8bZvZxgl-iJQQmBXoAt0D07J84qJhd8DqPllb_iWXzxx110id15Hoi2K8N_QviMQcRrLBUD87GRjSi16P3cPh63RANb_eoWkurYrSKSP1X7KDNUb81qsuvdNwSLe3Q04MvhLOBnn6MPlF3hZsW5jphyjxzhsMrMuIVilSuQBVUTbuyeuSPkFvt8u8_Xgxgq98VE_RwgYMvqMlwRaPvzpWMX9bhwI4dFaEruDkwWBGOHSyAkBbRQtli7rIu4IbVSjb27qlqJLnMAJ_Zjd-1A=w1350-h598-no?authuser=0");
+            backdrop-filter: blur(5px);
+            background-size: contain;
+            background-repeat: no-repeat;         
         }
         #containData{
             width:700px;
             height:500px;
-            border:1px solid #24a3b5;
+            border:1px solid #f7f4f4;
             margin:auto;
-            background-color: #24a3b5;
+            background-color: #fcf9f9;
+            border-radius:10px;
         }
         #myForm{
         margin:10%;
@@ -38,20 +41,32 @@
        margin-top: 5%;
        margin-left: 37%;
        margin-right: 2%;
-    }        
+    }   
+        #profbtn{
+        background-color: white;
+        border:1px solid #FF5722;
+        color:#FF5722;
+        font-weight: bolder;
+       font-size:smaller;
+       width:150px;
+       padding:1%;
+       border-radius: 5px;   
+       margin-left: 85%;   
+    }         
     </style>
 </head>
 <body>
-    <h3 style="color: black; text-align: center;">WELCOME TO PROFILE</h3>
+    <h3 style="color: rgb(107, 55, 55); text-align: center;">WELCOME TO PROFILE</h3>
     <div id="containData">
         <form onsubmit="add(event)" id="myForm">   
             <input type ="text" id="pass" placeholder="Enter your Password"/>            
             <input type ="text" id="name" placeholder="Enter Username"/>
-            <input type ="text" id="address" placeholder="Enter Address"/>          
+            <input type ="text" id="address" placeholder="Enter Address"/>     
+            <input type ="text" id="imgaddress" placeholder="Enter Image"/>                 
             <input type ="submit" id="sbt1"/>
-            </form> 
+            </form>            
     </div>
-
+    <a href="profileShow.html"><button id= "profbtn"> Go To Profile Page</button></a> 
 
 <script>
   function add(e){  
@@ -62,29 +77,25 @@
     let password=myForm.pass.value;
     let name =myForm.name.value;
     let address=myForm.address.value;   
+    let imgaddress=myForm.imgaddress.value; 
 
-    var newData=JSON.parse(localStorage.getItem("Users"));
-
-var count=0;    
-for(var i=0;i<newData.length;i++){    
-if(password==newData[i].password){
+    let newActiveData=JSON.parse(localStorage.getItem("activeUser"));
+for(var i=0;i<newActiveData.length;i++){
+if(password==newActiveData[i].Password){
 if(name!=""&&address!=""){    
-    newData[i]["username"]=name;
-    newData[i]["address"]=address;
+    newActiveData[i]["username"]=name;
+    newActiveData[i]["address"]=address; 
+    newActiveData[i]["Imageaddress"]=imgaddress;     
 }
 else{
     alert("Please complete all fields");
 }
 }
-else{
-    count++;
-}
-if(count==newData.length){
+else {
     alert("Incorrect Password");
 }
 }
-
-     localStorage.setItem("Users",JSON.stringify(newData))
+     localStorage.setItem("activeUser",JSON.stringify(newActiveData));     
   }     
 </script>
 
