@@ -52,13 +52,26 @@
             background-color: white;
             color:#24a3b5;
         }
-        #containData{
+        #datafilters{
+           display: flex;
+       }
+       #filters{
+           width: 20%;
+           flex-grow: 1;
+           padding:2%;
+            margin-top:2%;
+       }
+       #containData{
            width: 80%;
+           flex-grow: 3;
        }
        #heading > img{
             width:70px;
             height:30px;
             vertical-align: middle;
+       }
+       span{
+           margin-left: 10px;
        }
     </style>
 </head>
@@ -73,14 +86,160 @@
     </div>
     </div>
     <div id="datafilters">
-        <div id="filters"></div>
-        <div id="containData"></div> 
-    </div>   
+      <div id="filters">
+          <div>
+              <label for="">Filter by price</label>
+              <br/>
+              <input type="text" placeholder="min" id="minPrice" required>
+              <input type="text" placeholder="max" id="maxPrice" required>
+              <button id="priceFilterHL"  onclick="ApplyFilterPriceHL()">Apply Hight To Low</button>
+              <button id="priceFilterLH" onclick=" ApplyFilterPriceLH()">Apply Low To High</button>
+          </div>
+          <br>
+          <br>
+          <div>
+              <label for="">Filter By Rating</label>
+              <br/>
+              <input type="text" placeholder="min" id="minRating" required>
+              <input type="text" placeholder="max" id="maxRating" required>
+              <button id="ratingFilterHL" onclick=" ApplyFilterRatingHL()">Apply Hight To Low</button>
+              <button id="ratingFilterLH"onclick=" ApplyFilterRatingLH()">Apply Low To High</button>
+          </div>
+          <br>
+          <br>
+          <div>
+              <label for="">Filter By Discount</label>
+              <br/>
+              <input type="text" placeholder="min" id="minDiscount" required>
+              <input type="text" placeholder="max" id="maxDiscount" required>
+              <button id="discountFilterHL" onclick=" ApplyFilterDiscountHL()">Apply Hight To Low</button>
+              <button id="discountFilterLH" onclick=" ApplyFilterDiscountLH()">Apply Low To High</button>
+          </div>
+          
+      </div>
+      <div id="containData"></div> 
+  </div>  
 </body>
 </html>
 <script>
 let parent =document.getElementById("containData");
-var fiterableData=[];
+var filterableData=[];
+
+function ApplyFilterPriceHL(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].mrp > min) && (womenData[i].mrp < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.mrp -a.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterPriceLH(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].mrp > min) && (womenData[i].mrp < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.mrp -b.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingHL(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].rating > min) && (womenData[i].rating < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.rating -a.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingLH(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].rating > min) && (womenData[i].rating < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.rating -b.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterDiscountHL(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].discount > min) && (womenData[i].discount < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return b.discount -a.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterDiscountLH(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].discount > min) && (womenData[i].discount < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return a.discount -b.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
 let womenData=[    {
       name: "Huda Beauty Red Edition 8g pack of 4",
       mrp: 700,
@@ -198,12 +357,23 @@ fiterableData=el;
   let img = document.createElement("img");
   img.src=product.img;
   let product_price = document.createElement("p");
-  product_price.textContent=product.mrp;
-  product_price.style.textDecorationLine="line-through";
+  // Three types of price current total paybel
+  let exprice=document.createElement("span");
+  let totalprice=document.createElement("span");
+  let currprice=document.createElement("span");
+
+  currprice.textContent="₹"+product.mrp;
+  var total=Math.ceil(((product.mrp/(100-product.discount))*100));
+  totalprice.textContent="₹"+total;
+  var exdiscount=Math.ceil(total*(product.discount/2))/100
+  exprice.textContent="ex ₹"+Math.ceil(total-exdiscount);
+  totalprice.style.textDecorationLine="line-through"
+  exprice.style.textDecorationLine="line-through"
+  product_price.append(exprice,totalprice,currprice);
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
-  product_discount.textContent=product.discount+" "+"off";
+  product_discount.textContent=product.discount+" % "+"off";
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
