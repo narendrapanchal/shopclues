@@ -229,6 +229,11 @@
         span{
             margin-left: 10px;
         }
+       #containData img{
+            width:60%;
+            height:35%;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -914,8 +919,10 @@ function addToCrt(p){
             break;
         }
     }
-    if(check)
-    product_cart.push(p);
+    if(check){
+        p.count=1;
+        product_cart.push(p);
+    }
     else
     alert("Already Added to the Cart");
     localStorage.setItem("cart",JSON.stringify(product_cart));

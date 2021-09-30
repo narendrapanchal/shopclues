@@ -11,6 +11,7 @@
         padding:2%;
         margin-top:2%;
         display:grid;
+        grid-gap: 1%;
         grid-template-columns: 24% 24% 24% 24%;
     }
     #containData > div{
@@ -21,6 +22,11 @@
     #containData > div:hover{
         border: 2px solid #24A3B5;
     }
+    img{
+            width:60%;
+            height:35%;
+            margin: auto;
+        }
     body{
         background-color: skyblue;
     }</style>
@@ -89,8 +95,10 @@ function addToCrt(p){
             break;
         }
     }
-    if(check)
-    product_cart.push(p);
+    if(check){
+        p.count=1;
+        product_cart.push(p);
+    }
     else
     alert("Already Added to the Cart");
     localStorage.setItem("cart",JSON.stringify(product_cart));
