@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+        }        
+        body{
+            background-image: url("https://lh3.googleusercontent.com/2X5UqMCQ4mSID9TEAD5MW63PHYMts7oAy6L8AA1IkRX_C5Bho70E1ql7QpDVzjTZrlTgGR_kgxCnHk3nxZib4fDKzZ2PnjYhfkBpnWv43qCESYDrLqrxN8XwNERj7kL5shBXEN_UyD6rkn1XAO9vmpL8Otm4K83tu37zc3IEIID6fGzs0RijDr4v5O10OVlfSxQ6bAf2wDIhtCxs3Vrl3iPOOVV8ZJCZWqHTB1ptNFl3uBLjL2vVu7zEUpHogEIMWGd3WJ9GvPHP5DK6rM08DzPhvZlmMB0tE493j3ej9mWe_cX4Phj3MNIA3RzxgMgV8T3YsZ2Q2bmJnPFOj6to6_v_rH5RNDQzQA1T8G_-vPvelFvBoyC3XOgcd0WFCATtsfShTc1eg2EEf9zZeblr6MQPYNteURNfZDU1HcB2PCeLZ9BHzC9C3kVXBbGL2jRFNy1cgnI8bZvZxgl-iJQQmBXoAt0D07J84qJhd8DqPllb_iWXzxx110id15Hoi2K8N_QviMQcRrLBUD87GRjSi16P3cPh63RANb_eoWkurYrSKSP1X7KDNUb81qsuvdNwSLe3Q04MvhLOBnn6MPlF3hZsW5jphyjxzhsMrMuIVilSuQBVUTbuyeuSPkFvt8u8_Xgxgq98VE_RwgYMvqMlwRaPvzpWMX9bhwI4dFaEruDkwWBGOHSyAkBbRQtli7rIu4IbVSjb27qlqJLnMAJ_Zjd-1A=w1350-h598-no?authuser=0");
+            backdrop-filter: blur(5px);
+            background-size: cover;
+            background-repeat: no-repeat; 
+            color:#1A237E;          
+        }
+        #containData{
+            width:700px;
+            height:530px;
+            border:1px solid #f7f4f4;
+            margin:auto;
+            background-color: #fcf9f9;
+            border-radius:10px;
+
+        }
+        #imgProf{
+            width:100%;
+            height:70%;
+            border-radius:5px;
+        }
+        #homebtn{
+            background-color: white;
+            color:#FF5722;
+            border:1px solid #FF5722;
+            font-weight: bolder;
+            font-size:smaller;
+            width:180px;
+            padding:1%;
+            border-radius: 5px;            
+        }
+    </style>
+</head>
+<body>
+    <h2 id="wlcome" style="color:rgb(107, 55, 55); text-align: center;"></h2>
+    <div id="containData">
+        <img id="imgProf"></img>
+        <p id="usernameProf"></p>
+        <p id="phoneProf"></p>
+        <p id="emailProf"></p>
+        <p id="addressProf"></p>
+    </div>     
+<a href="frontpage.html"><button id="homebtn">GO TO HOME PAGE</button></a>     
+
+  
+    <script>
+    let profileData=JSON.parse(localStorage.getItem("activeUser"));
+      
+    let wlcmMsg=document.getElementById("wlcome");
+    wlcmMsg.textContent="Welcome" +" " +profileData[0].username;
+
+      
+    let image=document.getElementById("imgProf");
+    image.src=profileData[0].Imageaddress;
+
+    let usernameprof=document.getElementById("usernameProf");
+    usernameprof.textContent="Name: "+" "+profileData[0].username;
+
+    let phoneprof=document.getElementById("phoneProf");
+    phoneprof.textContent="Phone Number: "+" "+profileData[0].Phone;
+    
+    let emailprof=document.getElementById("emailProf");
+    emailprof.textContent="Email Id: "+" "+profileData[0].Email;
+    
+    let addressprof=document.getElementById("addressProf");
+    addressprof.textContent="Address: "+" "+profileData[0].address;    
+    </script>
+</body>
+</html>
