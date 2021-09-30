@@ -141,17 +141,19 @@
             <button onclick="search()">Search</button>
           </div>
             
-        <a href=cart1.html target="_blank"><ion-icon name="notifications-outline" ></ion-icon></a>
-        <a href=cart1.html target="_blank"><ion-icon name="heart-outline" ></ion-icon></a>
-        <a href=cart1.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
-        <h3><a href=cart1.html>Sign In</a>
-                   <ul>
-                    <li><a href=cart.html>My Orders</a></li>
-                    <li><a href=cart.html>My Profile</a></li>
-                    <li><a href=cart.html>My wishlist</a></li>
-                    <li><a href=cart.html>Help & Support</a></li>
-                    <li><a href=cart.html>My favourite stores</a></li>
-                </ul>
+
+        <a href=cart.html target="_blank"><ion-icon name="notifications-outline" ></ion-icon></a>
+        <a href=cart.html target="_blank"><ion-icon name="heart-outline" ></ion-icon></a>
+        <a href=cart.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
+        <h3><a href=signIn.html>Sign In</a>
+          <ul>
+            <li><a href=cart.html>My Orders</a></li>
+            <li><a href=cart.html>My Profile</a></li>
+            <li><a href=cart.html>My wishlist</a></li>
+            <li><a href=cart.html>Help & Support</a></li>
+            <li><a href=cart.html>My favourite stores</a></li>
+          </ul>
+
         </h3>
         </div>
     <div id="header">
@@ -643,11 +645,24 @@ fiterableData=el;
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
 
+  addToCart_btn.onclick=function(){addToCrt(product);}
+
   div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
   parent.append(div);
 });  
 }
 show(filterableData);
+
+
+if(localStorage.getItem("cart")===null){
+    localStorage.setItem("cart",JSON.stringify([]));
+}
+function addToCrt(p){
+    let product_cart=JSON.parse(localStorage.getItem("cart"));
+    product_cart.push(p);
+    localStorage.setItem("cart",JSON.stringify(product_cart));
+}
+
 
 
 function search()
@@ -668,4 +683,5 @@ function search()
      show(tempData);
      
     }
+
 </script>
