@@ -107,13 +107,26 @@
             background-color: white;
             color:#24a3b5;
         }
-        #containData{
+        #datafilters{
+           display: flex;
+       }
+       #filters{
+           width: 20%;
+           flex-grow: 1;
+           padding:2%;
+            margin-top:2%;
+       }
+       #containData{
            width: 80%;
+           flex-grow: 3;
        }
        #heading > img{
             width:70px;
             height:30px;
             vertical-align: middle;
+       }
+       span{
+           margin-left: 10px;
        }
        h3>ul{
            display: block;
@@ -221,6 +234,14 @@
        a {
   text-decoration: none !important;
 }
+#filters >div >button{
+    background-color: #FF5722;
+    padding: 5px;
+}
+#filters >div >input{
+ 
+    padding: 5px;
+}
 
     </style>
 </head>
@@ -234,13 +255,13 @@
       </div>
         
     <a href=cart1.html target="_blank"><ion-icon name="notifications-outline"></ion-icon></a>
-    <a href=cart1.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
-    <a href=cart1.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
+    <a href=wishlist.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
+    <a href=cart.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
     <h3><a href=signIn.html>Sign In</a>
       <ul>
         <li><a href=cart.html>My Orders</a></li>
         <li><a href=cart.html>My Profile</a></li>
-        <li><a href=cart.html>My wishlist</a></li>
+        <li><a href=wishlist.html>My wishlist</a></li>
         <li><a href=cart.html>Help & Support</a></li>
         <li><a href=cart.html>My favourite stores</a></li>
       </ul>
@@ -291,18 +312,164 @@
             </ul></div>
       </div>
       </div>
-    <div id="datafilters">
-        <div id="filters"></div>
-        <div id="containData"></div> 
-    </div>   
+      <div id="datafilters">
+        <div id="filters">
+            <div>
+                <label for="">Filter by price</label>
+                <br/>
+                <input type="text" placeholder="min" id="minPrice" required>
+                <input type="text" placeholder="max" id="maxPrice" required>
+                <button id="priceFilterHL"  onclick="ApplyFilterPriceHL()">Apply Hight To Low</button>
+                <button id="priceFilterLH" onclick=" ApplyFilterPriceLH()">Apply Low To High</button>
+            </div>
+            <br>
+            <br>
+            <div>
+                <label for="">Filter By Rating</label>
+                <br/>
+                <input type="text" placeholder="min" id="minRating" required>
+                <input type="text" placeholder="max" id="maxRating" required>
+                <button id="ratingFilterHL" onclick=" ApplyFilterRatingHL()">Apply Hight To Low</button>
+                <button id="ratingFilterLH"onclick=" ApplyFilterRatingLH()">Apply Low To High</button>
+            </div>
+            <br>
+            <br>
 
+            <div>
+                <label for="">Filter By Discount</label>
+                <br/>
+                <input type="text" placeholder="min" id="minDiscount" required>
+                <input type="text" placeholder="max" id="maxDiscount" required>
+                <button id="discountFilterHL" onclick=" ApplyFilterDiscountHL()">Apply Hight To Low</button>
+                <button id="discountFilterLH" onclick=" ApplyFilterDiscountLH()">Apply Low To High</button>
+            </div>
+            
+        </div>
+        <div id="containData"></div> 
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
 <script>
 let parent =document.getElementById("containData");
-var fiterableData=[];
+var filterableData=[];
+
+function ApplyFilterPriceHL(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].mrp > min) && (womenData[i].mrp < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.mrp -a.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterPriceLH(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].mrp > min) && (womenData[i].mrp < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.mrp -b.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingHL(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].rating > min) && (womenData[i].rating < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.rating -a.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingLH(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].rating > min) && (womenData[i].rating < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.rating -b.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterDiscountHL(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].discount > min) && (womenData[i].discount < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return b.discount -a.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterDiscountLH(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<womenData.length;i++){
+        if((womenData[i].discount > min) && (womenData[i].discount < max)){
+            filterableData.push(womenData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return a.discount -b.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
 let womenData=[    {
       name: "Huda Beauty Red Edition 8g pack of 4",
       mrp: 700,
@@ -420,28 +587,105 @@ fiterableData=el;
   let img = document.createElement("img");
   img.src=product.img;
   let product_price = document.createElement("p");
-  product_price.textContent=product.mrp;
-  product_price.style.textDecorationLine="line-through";
+ // Three types of price current total paybel
+ let exprice=document.createElement("span");
+  let totalprice=document.createElement("span");
+  let currprice=document.createElement("span");
+
+  currprice.textContent="₹"+product.mrp;
+  var total=Math.ceil(((product.mrp/(100-product.discount))*100));
+  totalprice.textContent="₹"+total;
+  var exdiscount=Math.ceil(total*(product.discount/2))/100
+  exprice.textContent="ex ₹"+Math.ceil(total-exdiscount);
+  totalprice.style.textDecorationLine="line-through"
+  exprice.style.textDecorationLine="line-through"
+  product_price.append(exprice,totalprice,currprice);
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
-  product_discount.textContent=product.discount+" "+"off";
+  product_discount.textContent=product.discount+" % "+"off";
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
   product_rating.textContent=product.rating+" "+"⭐";
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
-  div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
+  addToCart_btn.style.backgroundColor="#24A3B5";
+  addToCart_btn.style.padding="3px";
+  addToCart_btn.style.color="white";
+  addToCart_btn.style.marginLeft="10px";
+  addToCart_btn.onclick=function(){addToCrt(product);}
+  let addto_wish = document.createElement("button");
+  addto_wish.innerText="Add To Wishlist";
+  addto_wish.style.padding="3px";
+  addto_wish.style.backgroundColor="#FF5722";
+  addto_wish.style.color="white";
+  
+  addto_wish.onclick=function(){addToWishList(product);}
+  div.append(img,product_rating,product_name,product_price,product_discount,addto_wish, addToCart_btn);
   parent.append(div);
 });  
 }
+
 
 show(womenData);
 
 function search()
     {
-     
-     alert("searched for");
+     var searchable_item=[];
+     var n=document.getElementById("search_item");
+     var ser=n.value;
+     for(var j=0;j<womenData.length;j++)
+     {
+        var data_1=womenData[j].name.trim().split(" ");
+        for(var z=0;z<data_1.length;z++)
+        {
+         if(ser==data_1[z])
+         {
+             searchable_item.push(womenData[j]);
+         }
+        }
+     }
+     if(searchable_item.length!=0)
+     {
+    show(searchable_item);
+     }
+     else{
+         alert("Sorry! Product not Found");
+         show(womenData);
+     }
     }
+    if(localStorage.getItem("cart")===null){
+    localStorage.setItem("cart",JSON.stringify([]));
+}
+function addToCrt(p){
+    let product_cart=JSON.parse(localStorage.getItem("cart"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            check=false;
+            break;
+        }
+    }
+    if(check)
+    product_cart.push(p);
+    else
+    alert("Already Added to the Cart");
+    localStorage.setItem("cart",JSON.stringify(product_cart));
+}
+function addToWishList(p){
+    let product_cart=JSON.parse(localStorage.getItem("wishList"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            check=false;
+            break;
+        }
+    }
+    if(check)
+    product_cart.push(p);
+    else
+    alert("Already Added to the WishList");
+    localStorage.setItem("wishList",JSON.stringify(product_cart));
+}
 </script>

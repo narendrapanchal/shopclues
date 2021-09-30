@@ -34,30 +34,64 @@ let parent=document.getElementById("containData");
 let cart=JSON.parse(localStorage.getItem("cart"));
 function show(el){
     parent.innerHTML="";
-    fiterableData=el;
-      cart.forEach(function(product){
+      el.forEach(function(product){
       let div= document.createElement("div");
       let img = document.createElement("img");
       img.src=product.img;
       let product_price = document.createElement("p");
-      product_price.textContent=product.mrp;
-      product_price.style.textDecorationLine="line-through";
+      product_price.textContent="₹"+product.mrp;
       let product_name = document.createElement("p");
       product_name.textContent=product.name;
-      let product_discount = document.createElement("p");
-      product_discount.textContent=product.discount+" "+"off";
-      product_discount.style.color="#24A3B5"
-      product_discount.style.fontSize="20px"
+      let addto_wish = document.createElement("button");
+      addto_wish.textContent="Add To Wishlist";
+      addto_wish.style.color="#24A3B5";
+      addto_wish.onclick=function(){
+        addWishList(product);
+      }
       let product_rating = document.createElement("p");
       product_rating.textContent=product.rating+" "+"⭐";
     
-      let addToCart_btn = document.createElement("button");
-      addToCart_btn.innerText="Add To Cart";
-      div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
+      let removeFromCart_btn= document.createElement("button");
+      removeFromCart_btn.innerText="Remove From Cart";
+      removeFromCart_btn.onclick=function(){removeFromCrt(product);}
+      removeFromCart_btn.style.color="red";
+      div.append(img,product_rating,product_name,product_price,addto_wish,removeFromCart_btn);
       parent.append(div);
     });  
     }
-    show();
-    
+    show(cart);
+    function removeFromCrt(p){
+        let product_cart=JSON.parse(localStorage.getItem("cart"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            product_cart.splice(i,1);
+            break;
+        }
+    }
+    if(product_cart.length==0)
+    alert("Cart is empty please add some products");
+    localStorage.setItem("cart",JSON.stringify(product_cart));
+    show(product_cart);
+}
+function addWishList(p){
+    let product_cart=JSON.parse(localStorage.getItem("wishList"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            check=false;
+            break;
+        }
+    }
+    if(check)
+    product_cart.push(p);
+    else
+    alert("Already Added to the WishList")
+    localStorage.setItem("wishList",JSON.stringify(product_cart));
+}
+
+if(localStorage.getItem("cart")===null){
+    localStorage.setItem("cart",JSON.stringify([]));
+}
     
     </script>
