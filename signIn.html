@@ -129,12 +129,17 @@
 
      <div id="contain2">   
     <button id="login" onclick="login()">LOGIN</button>
-    <button id="signup" onclick="register()">REGISTER</button> 
+    <button id="signup" onclick="register()"><form method="POST">REGISTER</form></button> 
+    
 
     <div id="btns"></div>
     </div>
 
     </div>
+ 
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
 
     <script>   
 
@@ -185,6 +190,7 @@ let count=0;
 info.forEach(function(newUser){
   if(email==newUser.email && password==newUser.password){
     window.location.href="homedata.html";
+
     alert("Login Successful");
   }
   else{
@@ -266,7 +272,8 @@ if(localStorage.getItem("Users")===null){ // to create users which will contain 
         phone,
         password,
     }
-
+ 
+   
     // get array from localstorage
 
     let arrData=JSON.parse(localStorage.getItem("Users"));//existing user
@@ -276,6 +283,8 @@ if(email!=""&&phone!=""&&password!=""){
     arrData.push(User); // new user
     alert("Registration Successful");
     login(); // To go from signup to login page when clicked on register
+    send_email(email);
+    
 }
 else{
     alert("Please complete all fields");
@@ -286,7 +295,20 @@ else{
 
 }
 
-
+function send_email(email)
+{
+   console.log(email);
+    Email.send({
+    Host : "smtp.gmail.com",
+    Username : "projectshopclue1@gmail.com",
+    Password : "Clue@12345",
+    To : email,
+    From : "projectshopclue1@gmail.com",
+    Subject : "SIGNUP",
+    Body : 'YOUR ACCOUNT HAS BEEN CREATED SUCCESSFULLY',
+}).then(
+  message => alert("signed up successfully"));
+}
 
     </script>
     
