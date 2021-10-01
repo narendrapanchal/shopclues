@@ -226,6 +226,75 @@
             margin:1%;
             border-radius: 1%;
         }
+
+        #btnScrollToTop{
+            position:fixed;
+            right:10px;
+            bottom:10px;
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            background: #90A4AE;
+            color:white;
+            border:none;
+            outline:none;
+            cursor:pointer;
+            
+        }
+        #btnScrollToTop:active{
+            background:#546E7A;
+
+        }
+       
+        #btnScrollToTop>ion-icon {
+         font-size: 30px;
+         color: white;
+        }  
+
+        #bottom_page1{
+            display: grid;
+            grid-template-rows: 30% 70%;
+            text-align: center;
+            width:100%;
+            padding:none;
+            background-color: white;
+        }
+        #bottom_page1>div{
+              font-size: 20px;
+              padding: 1%;     
+          }
+        #bottom_page{
+            display: grid;
+            grid-template-columns: 27% 27% 27%;
+            justify-content: center;
+            padding:0% 6% 0% 6%;
+            gap:1%;
+            text-align: center;
+            background-color: white;
+            
+        }
+        #bottom_page>div>ion-icon {
+            font-size: 50px;
+            color: blueviolet;
+          }
+         
+          #below{
+            display:grid;
+            grid-template-columns: 50% 50%;
+            background-color:white;
+            gap:1%;
+            margin: 2% 0%;
+            padding: 1%;
+        }
+        #icon_below{
+            display: grid;
+            grid-template-columns: 6% 6% 6% 6% 6% 6% 60%;
+        }
+        #icon_below>a>ion-icon {
+            font-size: 30px;
+            color: blueviolet;
+          }
+
         span{
             margin-left: 10px;
         }
@@ -234,6 +303,7 @@
             height:35%;
             margin: auto;
         }
+
     </style>
 </head>
 <body>
@@ -317,7 +387,55 @@
         
             </div>
 
+
+    <button id="btnScrollToTop">
+                <ion-icon name="arrow-up-outline"></ion-icon>
+        
+     </button>
+
+
     <div id="containData"></div>    
+
+
+    <div id="bottom_page1">
+        <div><h3>Brand of Trust</h3></div>
+        <div id="bottom_page">
+          <div>
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+              <div>Great Selection</div>
+          </div>
+          <div>
+              <img src="data:image/png;base64,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" width="50px" height="50px"/>
+              <div>Low Price</div>
+          </div>
+          <div>
+              <ion-icon name="cart-outline"></ion-icon>
+              <div>Speedy Delivery</div>
+          </div>
+        </div>
+      </div>
+
+     
+
+      <div id="below">
+        <div>
+            <div><h3>Keep in Touch</h3></div>
+            <div id="icon_below">
+               <a href="https://www.facebook.com/ShopClues/"><ion-icon name="logo-facebook"></ion-icon></a>
+               <a href="https://in.pinterest.com/shopclues/_created/"><ion-icon name="logo-pinterest"></ion-icon></a>
+               <a href="https://twitter.com/shopclues"><ion-icon name="logo-twitter"></ion-icon></a>
+               <a href="https://plus.google.com/"><ion-icon name="logo-google"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UCnxPAa_6EL5ggl0_FRq6Zjw"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.linkedin.com/company/shopclues/"><ion-icon name="logo-linkedin"></ion-icon></a>
+               <div></div>
+            </div>
+            
+        </div>
+        <div>
+           <div><h3>100% Secure and Trusted Payment</h3></div>
+           <img src="https://images.shopclues.com/images/ui/pgateway_dkt@2x.png" width="100%"/>
+        </div>
+     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -885,6 +1003,10 @@ fiterableData=el;
   addto_wish.onclick=function(){addToWishList(product);}
   div.append(img,product_rating,product_name,product_price,product_discount,addto_wish, addToCart_btn);
   parent.append(div);
+
+  product_name.onclick=function(){
+        product_directto(product);
+      }
 });  
 }
 show(filterableData);
@@ -953,4 +1075,27 @@ function search()
          show(filterableData);
      }
     }
+
+    const btnScrollToTop=document.querySelector("#btnScrollToTop");
+
+    btnScrollToTop.addEventListener("click",function(){
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior:"smooth"
+        });
+    });
+
+    function product_directto(product){
+   localStorage.setItem("productToShow",JSON.stringify([]));  
+   let product_toShow=JSON.parse(localStorage.getItem("productToShow"));
+
+   product_toShow.push(product);
+
+    localStorage.setItem("productToShow",JSON.stringify(product_toShow));
+  
+    window.location.href="productshowing.html";
+
+  }
+
 </script>
