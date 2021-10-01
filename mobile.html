@@ -242,6 +242,45 @@
  
     padding: 5px;
 }
+
+#below{
+            display:grid;
+            grid-template-columns: 50% 50%;
+            background-color:white;
+            gap:1%;
+            margin: 2% 0%;
+            padding: 1%;
+        }
+        #icon_below{
+            display: grid;
+            grid-template-columns: 6% 6% 6% 6% 6% 6% 60%;
+        }
+        #icon_below>a>ion-icon {
+            font-size: 30px;
+            color: blueviolet;
+          }
+
+          #btnScrollToTop{
+            position:fixed;
+            right:10px;
+            bottom:10px;
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            background: #90A4AE;
+            color:white;
+            border:none;
+            outline:none;
+            cursor:pointer;
+        }
+        #btnScrollToTop:active{
+            background:#546E7A;
+
+        }
+       
+        #btnScrollToTop>ion-icon {
+         font-size: 30px;
+        }
     </style>
 </head>
 <body>
@@ -344,6 +383,33 @@
                 </div>
                 <div id="containData"></div> 
             </div>  
+
+            <button id="btnScrollToTop">
+                <ion-icon name="arrow-up-outline"></ion-icon>
+        
+            </button>
+        
+            
+        
+              <div id="below">
+                <div>
+                    <div><h3>Keep in Touch</h3></div>
+                    <div id="icon_below">
+                       <a href="https://www.facebook.com/ShopClues/"><ion-icon name="logo-facebook"></ion-icon></a>
+                       <a href="https://in.pinterest.com/shopclues/_created/"><ion-icon name="logo-pinterest"></ion-icon></a>
+                       <a href="https://twitter.com/shopclues"><ion-icon name="logo-twitter"></ion-icon></a>
+                       <a href="https://plus.google.com/"><ion-icon name="logo-google"></ion-icon></a>
+                        <a href="https://www.youtube.com/channel/UCnxPAa_6EL5ggl0_FRq6Zjw"><ion-icon name="logo-youtube"></ion-icon></a>
+                        <a href="https://www.linkedin.com/company/shopclues/"><ion-icon name="logo-linkedin"></ion-icon></a>
+                       <div></div>
+                    </div>
+                    
+                </div>
+                <div>
+                   <div><h3>100% Secure and Trusted Payment</h3></div>
+                   <img src="https://images.shopclues.com/images/ui/pgateway_dkt@2x.png" width="100%"/>
+                </div>
+            </div>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -632,6 +698,10 @@ fiterableData=el;
   addto_wish.onclick=function(){addToWishList(product);}
   div.append(img,product_rating,product_name,product_price,product_discount,addto_wish, addToCart_btn);
   parent.append(div);
+
+  product_name.onclick=function(){
+        product_directto(product);
+      }
 });  
 }
 function addToWishList(p){
@@ -697,4 +767,26 @@ function addToCrt(p){
     alert("Already Added to the Cart");
     localStorage.setItem("cart",JSON.stringify(product_cart));
 }
+
+const btnScrollToTop=document.querySelector("#btnScrollToTop");
+
+btnScrollToTop.addEventListener("click",function(){
+    window.scrollTo({
+        top:0,
+        left:0,
+        behavior:"smooth"
+    });
+});
+
+function product_directto(product){
+   localStorage.setItem("productToShow",JSON.stringify([]));  
+   let product_toShow=JSON.parse(localStorage.getItem("productToShow"));
+
+   product_toShow.push(product);
+
+    localStorage.setItem("productToShow",JSON.stringify(product_toShow));
+  
+    window.location.href="productshowing.html";
+
+  }
 </script>

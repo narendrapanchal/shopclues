@@ -1003,6 +1003,10 @@ fiterableData=el;
   addto_wish.onclick=function(){addToWishList(product);}
   div.append(img,product_rating,product_name,product_price,product_discount,addto_wish, addToCart_btn);
   parent.append(div);
+
+  product_name.onclick=function(){
+        product_directto(product);
+      }
 });  
 }
 show(filterableData);
@@ -1082,6 +1086,16 @@ function search()
         });
     });
 
-   
+    function product_directto(product){
+   localStorage.setItem("productToShow",JSON.stringify([]));  
+   let product_toShow=JSON.parse(localStorage.getItem("productToShow"));
+
+   product_toShow.push(product);
+
+    localStorage.setItem("productToShow",JSON.stringify(product_toShow));
+  
+    window.location.href="productshowing.html";
+
+  }
 
 </script>
