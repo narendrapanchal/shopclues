@@ -114,20 +114,31 @@
             background-color: white;
             color:#24a3b5;
         }
-       #datafilters{
-           display: inline-block;
+     
+        #datafilters{
+           display: flex;
        }
        #filters{
            width: 20%;
+           flex-grow: 1;
+           padding:2%;
+            margin-top:2%;
        }
        #containData{
            width: 80%;
+           flex-grow: 3;
        }
        #heading > img{
             width:70px;
             height:30px;
             vertical-align: middle;
        }
+       span{
+           margin-left: 10px;
+       }
+
+
+
        h3>ul{
            display: block;
            background-color: white;
@@ -234,6 +245,14 @@
        a {
   text-decoration: none !important;
 }
+#filters >div >button{
+    background-color: #FF5722;
+    padding: 5px;
+}
+#filters >div >input{
+ 
+    padding: 5px;
+}
 
     </style>
 </head>
@@ -247,13 +266,13 @@
           </div>
             
         <a href=cart1.html target="_blank"><ion-icon name="notifications-outline"></ion-icon></a>
-        <a href=cart1.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
-        <a href=cart1.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
+        <a href=wishlist.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
+        <a href=cart.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
         <h3><a href=signIn.html>Sign In</a>
           <ul>
             <li><a href=cart.html>My Orders</a></li>
             <li><a href=cart.html>My Profile</a></li>
-            <li><a href=cart.html>My wishlist</a></li>
+            <li><a href=wishlist.html>My wishlist</a></li>
             <li><a href=cart.html>Help & Support</a></li>
             <li><a href=cart.html>My favourite stores</a></li>
           </ul>
@@ -304,10 +323,41 @@
                   </ul></div>
             </div>
             </div>
-    <div id="datafilters">
-        <div id="filters"></div>
-        <div id="containData"></div> 
-    </div>
+            <div id="datafilters">
+                <div id="filters">
+                    <div>
+                        <label for="">Filter by price</label>
+                        <br/>
+                        <input type="text" placeholder="min" id="minPrice" required>
+                        <input type="text" placeholder="max" id="maxPrice" required>
+                        <button id="priceFilterHL"  onclick="ApplyFilterPriceHL()">Apply Hight To Low</button>
+                        <button id="priceFilterLH" onclick=" ApplyFilterPriceLH()">Apply Low To High</button>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label for="">Filter By Rating</label>
+                        <br/>
+                        <input type="text" placeholder="min" id="minRating" required>
+                        <input type="text" placeholder="max" id="maxRating" required>
+                        <button id="ratingFilterHL" onclick=" ApplyFilterRatingHL()">Apply Hight To Low</button>
+                        <button id="ratingFilterLH"onclick=" ApplyFilterRatingLH()">Apply Low To High</button>
+                    </div>
+                    <br>
+                    <br>
+        
+                    <div>
+                        <label for="">Filter By Discount</label>
+                        <br/>
+                        <input type="text" placeholder="min" id="minDiscount" required>
+                        <input type="text" placeholder="max" id="maxDiscount" required>
+                        <button id="discountFilterHL" onclick=" ApplyFilterDiscountHL()">Apply Hight To Low</button>
+                        <button id="discountFilterLH" onclick=" ApplyFilterDiscountLH()">Apply Low To High</button>
+                    </div>
+                    
+                </div>
+                <div id="containData"></div> 
+            </div>
       
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -315,139 +365,274 @@
 </html>
 <script>
 let parent =document.getElementById("containData");
-var fiterableData=[];
+var filterableData=[];
+
+function ApplyFilterPriceHL(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].mrp > min) && (homeData[i].mrp < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.mrp -a.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterPriceLH(){
+    var min=document.getElementById("minPrice").value;
+    var max=document.getElementById("maxPrice").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].mrp > min) && (homeData[i].mrp < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.mrp -b.mrp;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingHL(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].rating > min) && (homeData[i].rating < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return b.rating -a.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterRatingLH(){
+    var min=document.getElementById("minRating").value;
+    var max=document.getElementById("maxRating").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].rating > min) && (homeData[i].rating < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+
+    }
+
+    filterableData.sort(function(a,b){
+        return a.rating -b.rating;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
+function ApplyFilterDiscountHL(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].discount > min) && (homeData[i].discount < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return b.discount -a.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterDiscountLH(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].discount > min) && (homeData[i].discount < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return a.discount -b.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+function ApplyFilterDiscountLH(){
+    var min=document.getElementById("minDiscount").value;
+    var max=document.getElementById("maxDiscount").value;
+    min=Number(min);
+    max=Number(max);
+    for(var i=0;i<homeData.length;i++){
+        if((homeData[i].discount > min) && (homeData[i].discount < max)){
+            filterableData.push(homeData[i]);
+        }
+        console.log(typeof(min),min);
+    }
+
+    filterableData.sort(function(a,b){
+        return a.discount -b.discount;
+    });
+    show(filterableData);
+    filterableData=[];
+}
+
 let homeData = [
  {
   img:"https://cdn.shopclues.com/images/thumbnails/16112/280/1/762895344303r114264124041429602514.jpg",
   name:"Snack Plates-Incrizma Triangular Snack Plates 4 Pc - Red/White",
-  mrp:"₹399",
-  discount:"21%",
+  mrp:399,
+  discount:21,
   rating:5,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/112091/280/1/151483616-112091395-1606811542.jpg",
   name:"Happy Home 28 Pcs Premium Dinner Set",
-  mrp:"₹1999",
-  discount:"52%",
+  mrp:1999,
+  discount:52,
   rating:4,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/113778/280/1/152208334-113778486-1618651357.jpg",
   name:"Lazywindow Portable Blender USB Juicer with Charger",
-  mrp:"₹1500",
-  discount:"63%",
+  mrp:1500,
+  discount:63,
   rating:3.6,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/113508/280/1/152122339-113508156-1616751774.jpg",
   name:"Foldable Electric Travel Kettle Dual Voltage Food Grade Silicone 0.6 Litre",
-  mrp:"₹999",
-  discount:"35%",
+  mrp:999,
+  discount:35,
   rating:2.8,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/86626/280/1/130041918LLSM114TMain1508747128.png",
   name:"Lifelong LLSM114T (750Watt) - 4 Slice sandwich maker (Black)",
-  mrp:"₹900",
-  discount:"11%",
+  mrp:900,
+  discount:11,
   rating:1,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/102411/280/1/147566079-102411213-1566202843.jpg",
   name:"Philips HL1655/00 250 W Hand Blender (White, Blue)",
-  mrp:"₹1995",
-  discount:"30%",
+  mrp:1995,
+  discount:30,
   rating:1.5,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/88687/280/1/131315901carp0271512176772.jpg",
   name:"Manvi Creations New Floral Chenille Carpet",
-  mrp:"₹1499",
-  discount:"62%",
+  mrp:1499,
+  discount:62,
   rating:3,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/27515/280/1/KIDSRUGGREENROAD11448430807.jpg",
   name:"Taba Kids Carpet 35 Feet Kidsruggreenroad",
-  mrp:"₹1729",
-  discount:"52%",
+  mrp:1729,
+  discount:52,
   rating:4.8,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/107459/280/1/149946870-107459626-1591262555.jpg",
   name:"D S INTER Automatic Touchless Sensor/ Hands-Free Magic Soap Dispenser",
-  mrp:"₹3999",
-  discount:"86%",
+  mrp:3999,
+  discount:86,
   rating:4,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/69901/280/1/118407022118407022AT130zpsonor34zi14718178711493659379.jpg",
   name:"Allen Key",
-  mrp:"₹599",
-  discount:"53%",
+  mrp:599,
+  discount:53,
   rating:2.9,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/112467/280/1/151665419-112467186-1608213745.jpg",
   name:"Rotary Tool DIE Grinder KIT 163 Pieces Accessory KIT for Precision Work Rotary Tool KIT DIE Grinder",
-  mrp:"₹5999",
-  discount:"40%",
+  mrp:5999,
+  discount:40,
   rating:3.3,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/114612/280/1/152494337-114612401-1625735532.jpg",
   name:"Mapon All Purpose Magic Towel For Home, Kitchen and Outdoor Usage",
-  mrp:"₹599",
-  discount:"78%",
+  mrp:599,
+  discount:78,
   rating:1,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/50333/280/1/TorinoCreativeShotWenge14748739941482507938.png",
   name:"INTEX STYLES - TORINO BED (QUEEN SIZE WENGE COLORED)",
-  mrp:"₹20999",
-  discount:"25%",
+  mrp:20999,
+  discount:25,
   rating:2.2,
   },
   {
   img:"https://cdn.shopclues.com/images/thumbnails/30532/200/200/GGWMR1zpsndpwkmqe1453116797.jpg",
   name:"Wall Mountable Pot(2 pcs)",
-  mrp:"₹700",
-  discount:"86%",
+  mrp:700,
+  discount:86,
   rating:4.7,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/113296/280/1/152030491-113296221-1614159241.jpg",
-  name:"Home Berry XXXL Tear Drop Bean Bag Cover  (Without Beans) (Green)",
-  mrp:"₹1799",
-  discount:"63%",
+  name:"Home Berry XXXL Tear Drop Bean Bag Cover (Without Beans) (Green)",
+  mrp:1799,
+  discount:63,
   rating:5,
   },
   {
   img:"https://cdn.shopclues.com/images/banners/Work/widgetClp/garden/Garden_Lights.jpg",
   name:"Apex Gardening Lights(Set of 4)",
-  mrp:"₹1837",
-  discount:"40%",
+  mrp:1837,
+  discount:40,
   rating:2.5,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/114612/280/1/152494326-114612371-1628176995.jpg",
   name:"Ghar Kraft Hexagon 13 Golden Acrylic Mirror Wall Stickers",
-  mrp:"₹499",
-  discount:"66%",
+  mrp:499,
+  discount:66,
   rating:3.9,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/103682/280/1/148317870-103682572-1574147395.jpg",
   name:"1 Walltola PVC Tree Branches With Leaves Vinyl Wall Sticker",
-  mrp:"₹599",
-  discount:"81%",
+  mrp:599,
+  discount:81,
   rating:3,
   },
   {
   img:"https://cdn.shopclues.com/images1/thumbnails/96771/280/1/143546322-96771351-1549542127.jpg",
   name:"Choco More Digital Print Curtain pack of 1 ",
-  mrp:"₹699",
-  discount:"72%",
+  mrp:699,
+  discount:72,
   rating:4.1,
   },
 ];
@@ -468,27 +653,106 @@ fiterableData=el;
   let img = document.createElement("img");
   img.src=product.img;
   let product_price = document.createElement("p");
-  product_price.textContent=product.mrp;
-  product_price.style.textDecorationLine="line-through";
+ // Three types of price current total paybel
+ let exprice=document.createElement("span");
+  let totalprice=document.createElement("span");
+  let currprice=document.createElement("span");
+
+  currprice.textContent="₹"+product.mrp;
+  var total=Math.ceil(((product.mrp/(100-product.discount))*100));
+  totalprice.textContent="₹"+total;
+  var exdiscount=Math.ceil(total*(product.discount/2))/100
+  exprice.textContent="ex ₹"+Math.ceil(total-exdiscount);
+  totalprice.style.textDecorationLine="line-through"
+  exprice.style.textDecorationLine="line-through"
+  product_price.append(exprice,totalprice,currprice);
   let product_name = document.createElement("p");
   product_name.textContent=product.name;
   let product_discount = document.createElement("p");
-  product_discount.textContent=product.discount+" "+"off";
+  product_discount.textContent=product.discount+" % "+"off";
   product_discount.style.color="#24A3B5"
   product_discount.style.fontSize="20px"
   let product_rating = document.createElement("p");
   product_rating.textContent=product.rating+" "+"⭐";
   let addToCart_btn = document.createElement("button");
   addToCart_btn.innerText="Add To Cart";
-  div.append(img,product_rating,product_name,product_price,product_discount,addToCart_btn);
+  addToCart_btn.style.backgroundColor="#24A3B5";
+  addToCart_btn.style.padding="3px";
+  addToCart_btn.style.color="white";
+  addToCart_btn.style.marginLeft="10px";
+  addToCart_btn.onclick=function(){addToCrt(product);}
+  let addto_wish = document.createElement("button");
+  addto_wish.innerText="Add To Wishlist";
+  addto_wish.style.padding="3px";
+  addto_wish.style.backgroundColor="#FF5722";
+  addto_wish.style.color="white";
+  
+  addto_wish.onclick=function(){addToWishList(product);}
+  div.append(img,product_rating,product_name,product_price,product_discount,addto_wish, addToCart_btn);
   parent.append(div);
 });  
 }
+
 show(homeData);
 
 function search()
     {
-     
-     alert("searched for");
+     var searchable_item=[];
+     var n=document.getElementById("search_item");
+     var ser=n.value;
+     for(var j=0;j<homeData.length;j++)
+     {
+        var data_1=homeData[j].name.trim().split(" ");
+        for(var z=0;z<data_1.length;z++)
+        {
+         if(ser==data_1[z])
+         {
+             searchable_item.push(homeData[j]);
+         }
+        }
+     }
+     if(searchable_item.length!=0)
+     {
+    show(searchable_item);
+     }
+     else{
+         alert("Sorry! Product not Found");
+         show(homeData);
+     }
     }
+    if(localStorage.getItem("cart")===null){
+    localStorage.setItem("cart",JSON.stringify([]));
+}
+function addToCrt(p){
+    let product_cart=JSON.parse(localStorage.getItem("cart"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            check=false;
+            break;
+        }
+    }
+    if(check){
+        p.count=1;
+        product_cart.push(p);
+    }
+    else
+    alert("Already Added to the Cart");
+    localStorage.setItem("cart",JSON.stringify(product_cart));
+}
+function addToWishList(p){
+    let product_cart=JSON.parse(localStorage.getItem("wishList"));
+    var check=true;
+    for(var i=0;i<product_cart.length;i++){
+        if(product_cart[i].name==p.name){
+            check=false;
+            break;
+        }
+    }
+    if(check)
+    product_cart.push(p);
+    else
+    alert("Already Added to the WishList");
+    localStorage.setItem("wishList",JSON.stringify(product_cart));
+}
 </script>
