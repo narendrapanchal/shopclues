@@ -42,12 +42,24 @@
     #totalprice{
         text-align: center;
     }
+    h2{
+        text-align: center;
+        background-color:#24A3B5 ;
+        padding: 20px;
+        color: blue;
+    }
+    a{
+        text-decoration: none ;
+    }
     </style>
 </head>
 <body>
    <h1><marquee>Welcome to cart</marquee></h1> 
    <div id="containData"></div>
    <h1 id="totalprice">Total Price</h1>
+   <a href="checkout.html">
+    <h2>CHECKOUT</h2>
+   </a>
 </body>
 </html><script>
     var sum=0;
@@ -116,8 +128,6 @@ function show(el){
     document.getElementById("totalprice").textContent="Total Price ₹"+sum; 
     }
     show(cart);
-
-    
 function incrementItemCount(p){
     let product_cart=JSON.parse(localStorage.getItem("cart"));
     var check=true;
@@ -135,7 +145,6 @@ function incrementItemCount(p){
     localStorage.setItem("cart",JSON.stringify(product_cart));
     if(check)
     show(product_cart);
-
 }
 function decrementItemCount(p){
     let product_cart=JSON.parse(localStorage.getItem("cart"));
