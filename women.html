@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Women Page</title>
     <style>
        #mainbar{
             display: grid;
@@ -295,16 +295,14 @@
     <a href=cart1.html target="_blank"><ion-icon name="notifications-outline"></ion-icon></a>
     <a href=wishlist.html target="_blank"> <ion-icon name="heart-outline"></ion-icon></a>
     <a href=cart.html target="_blank"><ion-icon name="cart-outline"></ion-icon></a>
-    <h3><a href=signIn.html>Sign In</a>
-      <ul>
-        <li><a href=cart.html>My Orders</a></li>
-        <li><a href=cart.html>My Profile</a></li>
-        <li><a href=wishlist.html>My wishlist</a></li>
-        <li><a href=cart.html>Help & Support</a></li>
-        <li><a href=cart.html>My favourite stores</a></li>
-      </ul>
-     
-      
+    <h3><a href=signIn.html id="signInText">Sign In</a>
+        <ul>
+            <li><a href=myOrders.html style="margin-right: 30px">MyOrders</a></li>
+            <li><a href=profileinput.html>Profildata</a></li>
+            <li><a href=wishlist.html>Wishlist</a></li>
+            <li><a href=profileShow.html>Profile</a></li>
+            <li><a href=signout.html >Sign Out</a></li>
+          </ul>
     </h3>
     </div>
 
@@ -417,6 +415,20 @@
 </body>
 </html>
 <script>
+    if(localStorage.getItem("activeUser")===null){
+        localStorage.setItem("activeUser",JSON.stringify([]));
+    }
+    var presentUser=JSON.parse(localStorage.getItem("activeUser"));
+    if(presentUser.length==0)
+        alert("Sign Using Mobile Number or Email");
+    else if(presentUser[0].username==null){
+        alert("Set ProfileData");
+      document.getElementById("signInText").textContent="SetProFileData";
+    }else{
+        document.getElementById("signInText").textContent=presentUser[0].username;
+
+    }
+    
 let parent =document.getElementById("containData");
 var filterableData=[];
 

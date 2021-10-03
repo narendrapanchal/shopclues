@@ -72,6 +72,19 @@
     <div id="checkOutData"></div>
 
     <script>
+        if(localStorage.getItem("activeUser")==null){
+        localStorage.setItem("activeUser",JSON.stringify([]));
+    }
+    var presentUser=JSON.parse(localStorage.getItem("activeUser"));
+    if(presentUser.length==0){
+        alert("Sign Using Mobile Number or Email");
+        window.open("signIn.html");
+    }
+    else if(presentUser[0].username==null){
+        alert("Set ProfileData");
+        window.open("profileinput.html");
+    }
+   else{
     let dataFromCart=JSON.parse(localStorage.getItem("cart"));
     let dataFromActiveUser=JSON.parse(localStorage.getItem("activeUser"));
 
@@ -153,12 +166,14 @@ let finalTotal=document.getElementById("totalPrice");
        checkOutData.textContent="";
        parentCont.innerHTML="";
        alert("Congratulations your order has been placed successfully");
+       window.open("frontpage.html");
       }
       else{
           alert("Enter all details");
       }
-
     }     
+    
+    }
     </script>
 </body>
 </html>
