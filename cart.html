@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title><style>
+    <title>Cart</title><style>
      #containData{
         width:90%;
         margin:auto;
@@ -51,10 +51,21 @@
     a{
         text-decoration: none ;
     }
+    #homebtn{
+            background-color: #FF5722;
+            color:white;
+            border:1px solid #FF5722;
+            font-weight: bolder;
+            font-size:smaller;
+            width:180px;
+            padding:1%;
+            border-radius: 5px;            
+        }
     </style>
 </head>
 <body>
    <h1><marquee>Welcome to cart</marquee></h1> 
+   <a href="frontpage.html"><button id="homebtn">GO TO HOME PAGE</button></a> 
    <div id="containData"></div>
    <h1 id="totalprice">Total Price</h1>
    <a href="checkout.html">
@@ -93,7 +104,7 @@ function show(el){
       shipping.textContent="Shipping: FREE";
       let count=document.createElement("button");
       count.textContent=product.count;
-      count.style.marginLeft="30px";
+      count.style.marginLeft="0px";
       let decrement=document.createElement("button");
       decrement.textContent="-";
       decrement.style.marginLeft="10px";
@@ -120,7 +131,7 @@ function show(el){
       removeFromCart_btn.style.color="red";
       div.append(img);
       let lineChange = document.createElement("p");
-      div2.append(product_name,count,lineChange, decrement,increment,product_price);
+      div2.append(product_name, decrement, count,increment,product_price);
       div3.append(total,taxcount,addto_wish,removeFromCart_btn,shipping);
       outerdiv.append(div,div2,div3);
       parent.append(outerdiv);

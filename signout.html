@@ -64,7 +64,13 @@
     if(enteredpass!=""){
     if(enteredpass==delData[0].Password){
     localStorage.removeItem("activeUser");
-    alert("Sign Out Successful");  
+    alert("Sign Out Successful"); 
+    var arr=[];
+    localStorage.setItem("myOrders",JSON.stringify(arr));
+    localStorage.setItem("cart", JSON.stringify(arr));
+    localStorage.setItem("wishList", JSON.stringify(arr));
+
+    window.open("frontpage.html"); 
 
     } 
     else {
