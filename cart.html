@@ -163,7 +163,6 @@ function decrementItemCount(p){
     for(var i=0;i<product_cart.length;i++){
         if(product_cart[i].name==p.name){
          if(product_cart[i].count==1){
-            alert("Number of product can not be less than one");
             check=false;
             break;
          }
@@ -187,7 +186,6 @@ function decrementItemCount(p){
         }
     }
     if(product_cart.length==0)
-    alert("Cart is empty please add some products");
     localStorage.setItem("cart",JSON.stringify(product_cart));
     show(product_cart);
 }
@@ -203,7 +201,6 @@ function addWishList(p){
     if(check)
     product_cart.push(p);
     else
-    alert("Already Added to the WishList")
     localStorage.setItem("wishList",JSON.stringify(product_cart));
 }
 if(localStorage.getItem("cart")===null){

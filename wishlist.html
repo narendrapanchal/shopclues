@@ -109,9 +109,10 @@ function addToCrt(p){
     if(check){
         p.count=1;
         product_cart.push(p);
+        alert("Added to the Cart");
     }
     else
-    alert("Already Added to the Cart");
+    alert("Added to the Cart");
     localStorage.setItem("cart",JSON.stringify(product_cart));
 }
 

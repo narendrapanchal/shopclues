@@ -50,11 +50,19 @@
        border-radius: 5px;   
        margin-left: 75%; 
        margin-bottom: 2%;  
-    }         
+    }    
+    #chkout{
+        color: rgb(107, 55, 55);
+        text-align: center;
+    }     
+    #totalPrice{
+        text-align: right;
+        color: black;
+    }
     </style>
 </head>
 <body>
-    <h2 id="chkout" style="color:rgb(107, 55, 55); text-align: center;"></h2>
+    <h2 id="chkout"></h2>
     <div id="chkoutmainContain">
     <div id="chkoutcontain1">
     <h3 style="color:black;">Payment Details:</h3>
@@ -65,7 +73,7 @@
     <div id="addres"style="color:black;"></div>
     </div> 
     <div id="chkoutcontain2">
-    <h3 id="totalPrice" style="text-align: right; color:black;">Total Payable Price</h3>
+    <h3 id="totalPrice">Total Payable Price</h3>
     <button id="confirmOrd" onclick="transfer()">Confirm Order</button>  
     </div>
     </div>
@@ -77,12 +85,10 @@
     }
     var presentUser=JSON.parse(localStorage.getItem("activeUser"));
     if(presentUser.length==0){
-        alert("Sign Using Mobile Number or Email");
-        window.open("signIn.html");
+        window.location.open("signIn.html");
     }
     else if(presentUser[0].username==null){
-        alert("Set ProfileData");
-        window.open("profileinput.html");
+        window.location.open("profileinput.html");
     }
    else{
     let dataFromCart=JSON.parse(localStorage.getItem("cart"));
@@ -165,8 +171,7 @@ let finalTotal=document.getElementById("totalPrice");
        localStorage.setItem("cart","[]");
        checkOutData.textContent="";
        parentCont.innerHTML="";
-       alert("Congratulations your order has been placed successfully");
-       window.open("frontpage.html");
+       window.location.open("frontpage.html");
       }
       else{
           alert("Enter all details");
