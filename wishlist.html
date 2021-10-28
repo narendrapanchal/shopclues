@@ -53,6 +53,7 @@
 </html><script>
 let parent=document.getElementById("containData");
 let wishList=JSON.parse(localStorage.getItem("wishList"));
+console.log(wishList);
 function show(el){
     parent.innerHTML="";
       el.forEach(function(product){

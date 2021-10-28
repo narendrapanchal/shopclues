@@ -196,6 +196,7 @@ function decrementItemCount(p){
 function addWishList(p){
     let product_cart=JSON.parse(localStorage.getItem("wishList"));
     var check=true;
+    console.log(product_cart)
     for(var i=0;i<product_cart.length;i++){
         if(product_cart[i].name==p.name){
             check=false;
@@ -204,7 +205,7 @@ function addWishList(p){
     }
     if(check)
     product_cart.push(p);
-    else
+   
     localStorage.setItem("wishList",JSON.stringify(product_cart));
 }
 if(localStorage.getItem("cart")===null){
